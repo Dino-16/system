@@ -80,6 +80,7 @@ class Requisitions extends Component
     {   
         $statusCounts = [
             'Open' => Requisition::where('status', 'Open')->count(),
+            'In-Progress' => Requisition::where('status', 'In-Progress')->count(),
             'Closed' => Requisition::where('status', 'Closed')->count(),
             'Draft' => Requisition::where('status', 'Draft')->count(),
             'All' => Requisition::count(),

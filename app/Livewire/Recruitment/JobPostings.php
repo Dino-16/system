@@ -54,7 +54,7 @@ class JobPostings extends Component
         ]);
 
         // Update requisition status to 'Ongoing'
-        $this->selectedJob->status = 'In-Process';
+        $this->selectedJob->status = 'In-Progress';
         $this->selectedJob->save();
 
         session()->flash('success', 'Posted Successfully');

@@ -22,7 +22,12 @@
                 </li>
                 <li>
                     <a @class('dropdown-item') wire:click="$set('statusFilter', 'Open')">
-                        <i @class('bi bi-hourglass-split me-2')></i> Open
+                        <i @class('bi bi-check-circle me-2')></i> Open
+                    </a>
+                </li>
+                <li>
+                    <a @class('dropdown-item') wire:click="$set('statusFilter', 'In-Progress')">
+                        <i @class('bi bi-hourglass-split me-2')></i> In-Progress
                     </a>
                 </li>
                 <li>
@@ -32,7 +37,7 @@
                 </li>
                 <li>
                     <a @class('dropdown-item') wire:click="$set('statusFilter', 'Closed')">
-                        <i @class('bi bi-x-circle-fill me-2')></i> Closed
+                        <i @class('bi bi-x-circle me-2')></i> Closed
                     </a>
                 </li>
             </ul>
@@ -75,7 +80,8 @@
                                 @class([
                                     'badge rounded-pill px-3 py-2',
                                     'bg-primary' => $requisition->status === 'Open',
-                                    'bg-warning text-dark' => $requisition->status === 'Draft',
+                                    'bg-warning text-dark' => $requisition->status === 'In-Progress',
+                                    'bg-danger' => $requisition->status === 'Draft',
                                     'bg-secondary' => $requisition->status === 'Closed',
                                 ])
                             >
