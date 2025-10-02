@@ -84,12 +84,14 @@
                         </a>
                     </li>
                     <li @class('nav-item')>
-                        <a href="" @class('nav-link text-dark')>
+                        <a href="{{ route('interviews') }}" 
+                        @class('nav-link text-dark' . (request()->is('interviews') ? 'active' : ''))>
                             <i @class('bi bi-calendar-event me-2')></i> Interviews
                         </a>
                     </li>
                     <li @class('nav-item')>
-                        <a href="" @class('nav-link text-dark')>
+                        <a href="{{ route('offer-acceptance') }}" 
+                        @class('nav-link text-dark' . (request()->is('offer-acceptance') ? 'active' : ''))>
                             <i @class('bi bi-hand-thumbs-up me-2')></i> Offer Acceptance
                         </a>
                     </li>
@@ -111,23 +113,21 @@
             <div id="onboardingMenu" @class('collapse ps-4')>
                 <ul @class('nav flex-column')>
                     <li @class('nav-item')>
-                        <a href="" @class('nav-link text-dark')>
+                        <a href="{{ route('new-hires') }}" 
+                            @class('nav-link text-dark' . (request()->is('new-hires') ? 'active' : ''))>
                             <i @class('bi bi-person-plus-fill me-2')></i> New Hire
                         </a>
                     </li>
                     <li @class('nav-item')>
-                        <a href="" @class('nav-link text-dark')>
+                        <a href="{{ route('document-checklist') }}" 
+                            @class('nav-link text-dark' . (request()->is('document-checklist') ? 'active' : ''))>
                             <i @class('bi bi-check2-square me-2')></i> Document Checklist
                         </a>
                     </li>
                     <li @class('nav-item')>
-                        <a href="" @class('nav-link text-dark')>
+                        <a href="{{ route('orientation-plan') }}" 
+                            @class('nav-link text-dark'. (request()->is('orientation-plan') ? 'active' : ''))>
                             <i @class('bi bi-calendar-week me-2')></i> Orientation Plan
-                        </a>
-                    </li>
-                    <li @class('nav-item')>
-                        <a href="" @class('nav-link text-dark')>
-                            <i @class('bi bi-file-earmark-text me-2')></i> Document Form
                         </a>
                     </li>
                 </ul>
@@ -148,17 +148,20 @@
             <div id="performanceMenu" @class('collapse ps-4')>
                 <ul @class('nav flex-column')>
                     <li @class('nav-item')>
-                        <a href="" @class('nav-link text-dark')>
+                        <a href="{{ route('new-hire-reviews') }}" 
+                            @class('nav-link text-dark' . (request()->is('new-hire-reviews') ? 'active' : ''))>
                             <i @class('bi bi-person-check-fill me-2')></i> New Hire Review
                         </a>
                     </li>
                     <li @class('nav-item')>
-                        <a href="" @class('nav-link text-dark')>
+                        <a href="{{ route('employee-evaluations') }}" 
+                            @class('nav-link text-dark' . (request()->is('employee-evaluations') ? 'active' : ''))>
                             <i @class('bi bi-clipboard-data-fill me-2')></i> Employee Evaluations
                         </a>
                     </li>
                     <li @class('nav-item')>
-                        <a href="" @class('nav-link text-dark')>
+                        <a href="{{ route('evaluation-form') }}" 
+                            @class('nav-link text-dark' . (request()->is('evaluation-form') ? 'active' : ''))>
                             <i @class('bi bi-file-earmark-bar-graph me-2')></i> Evaluation Forms
                         </a>
                     </li>
