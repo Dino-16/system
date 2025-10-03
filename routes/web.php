@@ -35,4 +35,8 @@ Route::middleware(['auth'])->group( function() {
     //Social Recognition
     Route::view('/shout-outs', 'hr1.social_recognition.shout-outs')->name('shout-outs');
     Route::view('/shoutout-records', 'hr1.social_recognition.shoutout-records')->name('shoutout-records');
+
+    //Settings 
+    Route::view('/user-logs', 'hr1.settings.user-logs')->name('user-logs');
+    Route::view('/account', 'hr1.settings.account')->name('account');
 });

@@ -196,6 +196,34 @@
                 </ul>
             </div>
         </li>
+        <li @class('nav-item')>
+            <a href="#settingMenu"
+            role="button"
+            aria-expanded="false"
+            aria-controls="settingMenu"
+            data-bs-toggle="collapse"
+            @class('nav-link text-dark d-flex justify-content-between align-items-center')>
+                <span><i @class('bi bi-gear me-2')></i> Settings</span>
+                <i @class('bi bi-chevron-down small')></i>
+            </a>
+
+            <div id="settingMenu" @class('collapse ps-4')>
+                <ul @class('nav flex-column')>
+                    <li @class('nav-item')>
+                        <a href="{{ route('user-logs') }}"
+                        @class('nav-link text-dark' . (request()->is('user-logs') ? ' active' : ''))>
+                            <i @class('bi bi-journal-text me-2')></i> User Logs
+                        </a>
+                    </li>
+                    <li @class('nav-item')>
+                        <a href="{{ route('account') }}"
+                        @class('nav-link text-dark' . (request()->is('account') ? ' active' : ''))>
+                            <i @class('bi bi-shield-lock-fill me-2')></i> Account Settings
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
 
         <hr>
 
