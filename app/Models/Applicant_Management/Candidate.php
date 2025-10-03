@@ -28,4 +28,9 @@ class Candidate extends Model
         'interviewDate',
         'interviewTime',
     ];
+
+    public function offerAcceptance()
+    {
+        return $this->hasOne(Offer::class);
+    }
 }

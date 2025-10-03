@@ -4,6 +4,7 @@ namespace App\Livewire\Applicants;
 
 use Livewire\Component;
 use App\Models\Applicant_Management\Candidate;
+use App\Models\Applicant_Management\Offer;
 use Carbon\Carbon;
 
 class Interviews extends Component
@@ -30,6 +31,7 @@ class Interviews extends Component
         $status = Candidate::findOrFail($id);
         $status->status = 'Final';
         $status->save();
+
     }
     
     public function reject($id)
@@ -41,9 +43,17 @@ class Interviews extends Component
 
     public function approve($id)
     {
-        $status = Candidate::findOrFail($id);
-        $status->status = 'Passed';
-        $status->save();
+        $candidate = Candidate::findOrFail($id); 
+        $candidate->status = 'Passed';
+        $candidate->save();
+
+        if (!$candidate->offerAcceptance) {
+            Offer::create([
+                'candidate_id' => $candidate->id,
+                'offer_date' => now(),
+                'offer_status' => 'Pending',
+            ]);
+        }
     }
 
     public function render()
@@ -53,14 +63,12 @@ class Interviews extends Component
         $query = Candidate::query();
 
         if ($this->interviewStage === 'Scheduled') {
-            // "Initial" means status is 'Scheduled' and interview is today
             $query->where('status', 'Scheduled')
                 ->orWhere('status', 'Initial')
                 ->whereDate('interviewDate', $today);
         } elseif ($this->interviewStage === 'Final') {
             $query->where('status', 'Final');
         } elseif ($this->interviewStage === 'All') {
-            // Show all candidates with valid interview statuses
             $query->whereIn('status', ['Scheduled', 'Final', 'Rejected', 'Passed']);
         }
 
