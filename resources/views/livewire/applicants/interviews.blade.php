@@ -1,5 +1,11 @@
 <div>
 
+    <div class="d-flex justify-content-end mb-3">
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#requestRoomModal">
+            <i class="bi bi-plus-circle me-2"></i>Request Room
+        </button>
+    </div>
+
     {{-- Filter Buttons --}}
     <div @class(['row', 'mb-3'])>
         <div @class(['col-md-4'])>
@@ -96,12 +102,12 @@
         @empty
             <div @class(['col-12'])>
                 <div @class(['alert', 'alert-info'])>
-                    No candidates match the selected interview stage.
                 </div>
             </div>
         @endforelse
     </div>
 
-    {{-- Modal --}}
+    {{-- Modals --}}
     @include('livewire.applicants.includes.interview-view-modal')
+    @include('livewire.applicants.includes.request-room-modal')
 </div>
