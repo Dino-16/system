@@ -3,6 +3,7 @@
 namespace App\Livewire\Onboarding;
 
 use Livewire\Component;
+use Illuminate\Support\Facades\Http;
 
 class NewHires extends Component
 {
