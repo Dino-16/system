@@ -8,7 +8,7 @@ use App\Models\Recruitment_Management\Requisition;
 
 class RequisitionsController extends Controller
 {
-    public function store(Request $request) 
+    public function store(Request $request)
     {
         $validated = $request->validate([
             'requested_by' => 'required|string|max:255',

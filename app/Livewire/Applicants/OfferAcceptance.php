@@ -42,8 +42,6 @@ class OfferAcceptance extends Component
             'skills' => $candidate->skills,
             'experience' => $candidate->experience,
             'education' => $candidate->education,
-            'interviewDate' => $candidate->interviewDate,
-            'interviewTime' => $candidate->interviewTime,
             'status' => $candidate->status,
         ];
 
@@ -51,7 +49,7 @@ class OfferAcceptance extends Component
             $response = Http::asJson()->post('https://hr4.jetlougetravels-ph.com/api/candidates', $payload);
 
             if ($response->successful()) {
-                Log::info('Candidate data sent to Hr 4', ['candidate_id' => $candidate->id]);
+                Log::info('Candidate data sent to Hr', ['candidate_id' => $candidate->id]);
             } else {
                 Log::error('Failed to send candidate data', [
                     'status' => $response->status(),
@@ -59,7 +57,7 @@ class OfferAcceptance extends Component
                 ]);
             }
         } catch (\Throwable $e) {
-            Log::error('Error sending candidate to Hr 4', ['message' => $e->getMessage()]);
+            Log::error('Error sending candidate to Hr', ['message' => $e->getMessage()]);
         }
     }
 
