@@ -46,7 +46,7 @@ class OfferAcceptance extends Component
         ];
 
         try {
-            $response = Http::asJson()->post('https://hr4.jetlougetravels-ph.com/api/candidates', $payload);
+            $response = Http::asJson()->post('https://hr4.jetlougetravels-ph.com/api/employees', $payload);
 
             if ($response->successful()) {
                 Log::info('Candidate data sent to Hr', ['candidate_id' => $candidate->id]);

@@ -1,3 +1,23 @@
-<div>
-    {{-- Because she competes with no one, no one can compete with her. --}}
+<div class="container mt-4">
+    <h3>Employee List</h3>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Position</th>
+                <th>Department</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($employees as $employee)
+                <tr>
+                    <td>{{ $employee['name'] }}</td>
+                    <td>{{ $employee['email'] }}</td>
+                    <td>{{ $employee['position'] }}</td>
+                    <td>{{ $employee['department'] }}</td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
 </div>
