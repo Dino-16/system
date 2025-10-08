@@ -6,7 +6,7 @@
     <img src="https://ui-avatars.com/api/?name={{ urlencode(substr(auth()->user()->name, 0, 1)) }}&size=150&background=0d6efd&color=fff"
         alt="Admin Profile" class="profile-img mb-2">
         <h6 @class('fw-semibold mb-1')>{{ auth()->user()->name }}</h6>
-        <small @class('text-muted')>Travel Administrator</small>
+        <small @class('text-muted')>{{ auth()->user()->role }}</small>
     </div>
 
     {{-- Navigation Menu --}}
@@ -209,12 +209,14 @@
 
             <div id="settingMenu" @class('collapse ps-4')>
                 <ul @class('nav flex-column')>
+                    @if( auth()->user()->role === 'Admin')
                     <li @class('nav-item')>
                         <a href="{{ route('user-logs') }}"
                         @class('nav-link text-dark' . (request()->is('user-logs') ? ' active' : ''))>
                             <i @class('bi bi-journal-text me-2')></i> User Logs
                         </a>
                     </li>
+                    @endif
                     <li @class('nav-item')>
                         <a href="{{ route('account') }}"
                         @class('nav-link text-dark' . (request()->is('account') ? ' active' : ''))>
