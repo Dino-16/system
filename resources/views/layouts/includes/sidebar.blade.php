@@ -32,13 +32,13 @@
             <div id="recruitmentMenu" @class('collapse ps-4')>
                 <ul @class('nav flex-column')>
                     <li @class('nav-item')>
-                        <a href="{{ route('requisitions') }}" 
+                        <a href="{{ route('requisitions') }}"
                             @class('nav-link text-dark' . (request()->is('requisitions') ? 'active' : ''))>
                             <i @class('bi bi-file-earmark-plus me-2')></i> Requisition
                         </a>
                     </li>
                     <li @class('nav-item')>
-                        <a href="{{ route('job-postings') }}" 
+                        <a href="{{ route('job-postings') }}"
                             @class('nav-link text-dark' . (request()->is('job-postings') ? 'active' : ''))>
                             <i @class('bi bi-megaphone-fill me-2')></i> Job Posting
                         </a>
@@ -66,31 +66,37 @@
             <div id="applicantsMenu" @class('collapse ps-4')>
                 <ul @class('nav flex-column')>
                     <li @class('nav-item')>
-                        <a href="{{ route('applications') }}" 
+                        <a href="{{ route('applications') }}"
                             @class('nav-link text-dark' . (request()->is('applications') ? 'active' : ''))>
                             <i @class('bi bi-journal-text me-2')></i> Applications
                         </a>
                     </li>
                     <li @class('nav-item')>
-                        <a href="{{ route('filtered-resumes') }}" 
+                        <a href="{{ route('filtered-resumes') }}"
                             @class('nav-link text-dark' . (request()->is('filtered-resumes') ? 'active' : ''))>
                             <i @class('bi bi-funnel-fill me-2')></i> Filtered Applicants
                         </a>
                     </li>
                     <li @class('nav-item')>
-                        <a href="{{ route('candidates') }}" 
+                        <a href="{{ route('candidates') }}"
                             @class('nav-link text-dark' . (request()->is('candidates') ? 'active' : ''))>
                             <i @class('bi bi-person-lines-fill me-2')></i> Candidates
                         </a>
                     </li>
                     <li @class('nav-item')>
-                        <a href="{{ route('interviews') }}" 
+                        <a href="{{ route('interviews') }}"
                         @class('nav-link text-dark' . (request()->is('interviews') ? 'active' : ''))>
                             <i @class('bi bi-calendar-event me-2')></i> Interviews
                         </a>
                     </li>
                     <li @class('nav-item')>
-                        <a href="{{ route('offer-acceptance') }}" 
+                        <a href="{{ route('request-rooms') }}"
+                        @class('nav-link text-dark' . (request()->is('request-rooms') ? 'active' : ''))>
+                            <i @class('bi bi-door-open me-2')></i> Request Room
+                        </a>
+                    </li>
+                    <li @class('nav-item')>
+                        <a href="{{ route('offer-acceptance') }}"
                         @class('nav-link text-dark' . (request()->is('offer-acceptance') ? 'active' : ''))>
                             <i @class('bi bi-hand-thumbs-up me-2')></i> Offer Acceptance
                         </a>
@@ -113,19 +119,19 @@
             <div id="onboardingMenu" @class('collapse ps-4')>
                 <ul @class('nav flex-column')>
                     <li @class('nav-item')>
-                        <a href="{{ route('new-hires') }}" 
+                        <a href="{{ route('new-hires') }}"
                             @class('nav-link text-dark' . (request()->is('new-hires') ? 'active' : ''))>
                             <i @class('bi bi-person-plus-fill me-2')></i> New Hire
                         </a>
                     </li>
                     <li @class('nav-item')>
-                        <a href="{{ route('document-checklist') }}" 
+                        <a href="{{ route('document-checklist') }}"
                             @class('nav-link text-dark' . (request()->is('document-checklist') ? 'active' : ''))>
                             <i @class('bi bi-check2-square me-2')></i> Document Checklist
                         </a>
                     </li>
                     <li @class('nav-item')>
-                        <a href="{{ route('orientation-plan') }}" 
+                        <a href="{{ route('orientation-plan') }}"
                             @class('nav-link text-dark'. (request()->is('orientation-plan') ? 'active' : ''))>
                             <i @class('bi bi-calendar-week me-2')></i> Orientation Plan
                         </a>
@@ -148,19 +154,19 @@
             <div id="performanceMenu" @class('collapse ps-4')>
                 <ul @class('nav flex-column')>
                     <li @class('nav-item')>
-                        <a href="{{ route('new-hire-reviews') }}" 
+                        <a href="{{ route('new-hire-reviews') }}"
                             @class('nav-link text-dark' . (request()->is('new-hire-reviews') ? 'active' : ''))>
                             <i @class('bi bi-person-check-fill me-2')></i> New Hire Review
                         </a>
                     </li>
                     <li @class('nav-item')>
-                        <a href="{{ route('employee-evaluations') }}" 
+                        <a href="{{ route('employee-evaluations') }}"
                             @class('nav-link text-dark' . (request()->is('employee-evaluations') ? 'active' : ''))>
                             <i @class('bi bi-clipboard-data-fill me-2')></i> Employee Evaluations
                         </a>
                     </li>
                     <li @class('nav-item')>
-                        <a href="{{ route('evaluation-form') }}" 
+                        <a href="{{ route('evaluation-form') }}"
                             @class('nav-link text-dark' . (request()->is('evaluation-form') ? 'active' : ''))>
                             <i @class('bi bi-file-earmark-bar-graph me-2')></i> Evaluation Forms
                         </a>
@@ -183,7 +189,7 @@
             <div id="recognitionMenu" @class('collapse ps-4')>
                 <ul @class('nav flex-column')>
                     <li @class('nav-item')>
-                        <a href="{{ route('shout-outs') }}" 
+                        <a href="{{ route('shout-outs') }}"
                         @class('nav-link text-dark'. (request()->is('shout-outs') ? 'active' : ''))>
                             <i @class('bi bi-megaphone me-2')></i> Give a Shoutout
                         </a>
@@ -209,14 +215,12 @@
 
             <div id="settingMenu" @class('collapse ps-4')>
                 <ul @class('nav flex-column')>
-                    @if( auth()->user()->role === 'Admin')
                     <li @class('nav-item')>
                         <a href="{{ route('user-logs') }}"
                         @class('nav-link text-dark' . (request()->is('user-logs') ? ' active' : ''))>
                             <i @class('bi bi-journal-text me-2')></i> User Logs
                         </a>
                     </li>
-                    @endif
                     <li @class('nav-item')>
                         <a href="{{ route('account') }}"
                         @class('nav-link text-dark' . (request()->is('account') ? ' active' : ''))>

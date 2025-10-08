@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FacilitiesRequestController;
 
 Route::middleware(['guest'])->group( function() {
     Route::view('/', 'auth.login')->name('login');
@@ -20,6 +21,7 @@ Route::middleware(['auth'])->group( function() {
     Route::view('/candidates', 'hr1.applicant_management.candidates')->name('candidates');
     Route::view('/interviews', 'hr1.applicant_management.interviews')->name('interviews');
     Route::view('/offer-acceptance', 'hr1.applicant_management.offer-acceptance')->name('offer-acceptance');
+    Route::view('/request-rooms', 'hr1.applicant_management.request-rooms')->name('request-rooms');
 
     //New Hire Onboarding
     Route::view('/new-hires', 'hr1.onboarding.new-hires')->name('new-hires');
@@ -39,4 +41,10 @@ Route::middleware(['auth'])->group( function() {
     //Settings 
     Route::view('/user-logs', 'hr1.settings.user-logs')->name('user-logs');
     Route::view('/account', 'hr1.settings.account')->name('account');
+});
+
+// Facilities Requests
+Route::middleware(['auth'])->group(function () {
+    Route::post('/facilities-requests', [FacilitiesRequestController::class, 'store'])
+        ->name('facilities-requests.store');
 });
