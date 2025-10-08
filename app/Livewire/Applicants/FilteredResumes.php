@@ -8,7 +8,7 @@ use App\Models\Applicant_Management\Candidate;
 
 class FilteredResumes extends Component
 {
-    public $activeRating = 'Very Good';
+    public $activeRating = 'Excellent';
 
     public $showCandidateSelection = false;
 

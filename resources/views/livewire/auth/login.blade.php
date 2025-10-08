@@ -20,7 +20,7 @@
                 </span>
                 <input wire:model="password" type="password" @class('form-control') id="password" placeholder="Enter your password" required>
                 <button @class('btn btn-outline-secondary') type="button" id="togglePassword">
-                    <i @class('bi bi-eye')></i>
+                    <i @class('bi bi-eye') id="eyeIcon"></i>
                 </button>
             </div>
             <x-input-error :field="('password')" />
@@ -43,4 +43,19 @@
 
         <hr @class('my-4')>
     </form>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const passwordInput = document.getElementById('password');
+            const togglePassword = document.getElementById('togglePassword');
+            const eyeIcon = document.getElementById('eyeIcon');
+
+            togglePassword.addEventListener('click', function () {
+                const type = passwordInput.type === 'password' ? 'text' : 'password';
+                passwordInput.type = type;
+                eyeIcon.classList.toggle('bi-eye');
+                eyeIcon.classList.toggle('bi-eye-slash');
+            });
+        });
+    </script>
 </div>

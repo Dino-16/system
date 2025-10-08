@@ -23,7 +23,7 @@
                     </div>
 
                      <div @class(['modal-footer'])>
-                        <button type="button" @class(['btn', 'btn-secondary']) wire:click="closeCreateModal">Close</button>
+                        <button type="button" @class(['btn', 'btn-secondary']) wire:click="closeSetCandidate">Close</button>
                         <x-button-primary>Set</x-button-primary>
                     </div>
                 </form>

@@ -5,14 +5,14 @@
     <div @class('card shadow-sm mb-5 p-3')>
         <div class="d-flex justify-content-between align-items-center">
             <div>
-            @foreach (['Very Good', 'Good', 'Bad'] as $rating)
+            @foreach (['Excellent', 'Good', 'Bad'] as $rating)
                 <button type="button"
                     class="btn me-2 border
                         @if($activeRating === $rating) btn-default
                         @else btn-default @endif"
                     wire:click="setRating('{{ $rating }}')">
                     
-                    @if($rating === 'Very Good')
+                    @if($rating === 'Excellent')
                         <i class="bi bi-star me-1"></i>
                     @elseif($rating === 'Good')
                         <i class="bi bi-hand-thumbs-up me-1"></i>
@@ -35,8 +35,8 @@
                     <div class="card-header bg-white border-secondary">
                         <strong>{{ ucwords($applicant->applicant_first_name . ' ' . $applicant->applicant_middle_name . ' ' . $applicant->applicant_last_name) }}</strong>
                         <span class="float-end fs-5">
-                            @if($applicant->ratings === 'Very Good')
-                                <i class="bi bi-star text-warning" title="Very Good"></i>
+                            @if($applicant->ratings === 'Excellent')
+                                <i class="bi bi-star text-warning" title="Excellent"></i>
                             @elseif($applicant->ratings === 'Good')
                                 <i class="bi bi-hand-thumbs-up text-primary" title="Good"></i>
                             @elseif($applicant->ratings === 'Bad')

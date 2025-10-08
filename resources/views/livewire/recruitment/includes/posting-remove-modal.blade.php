@@ -16,9 +16,7 @@
                     <button 
                         type="button" 
                         @class('btn-close btn-close-white') 
-                        wire:click="                        closeConfirmModal
-"
-                    ></button>
+                        wire:click="removeConfirmModal"></button>
                 </div>
 
                 {{-- Body --}}

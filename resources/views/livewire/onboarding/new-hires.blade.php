@@ -6,7 +6,6 @@
                 <th>Name</th>
                 <th>Email</th>
                 <th>Position</th>
-                <th>Department</th>
             </tr>
         </thead>
         <tbody>
@@ -14,8 +13,7 @@
                 <tr>
                     <td>{{ $employee['name'] }}</td>
                     <td>{{ $employee['email'] }}</td>
-                    <td>{{ $employee['position'] }}</td>
-                    <td>{{ $employee['department'] }}</td>
+                    <td>{{ $employee['role'] }}</td>
                 </tr>
             @endforeach
         </tbody>
