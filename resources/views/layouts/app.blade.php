@@ -13,7 +13,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
 </head>
-<body style="background-color: #f8f9fa !important;">
+<body class="bg-light" style="background-color: #f8f9fa !important;">
 
     {{-- header --}}
     @include('layouts.includes.header')
@@ -25,33 +25,35 @@
     <div id="overlay" @class('position-fixed top-0 start-0 w-100 h-100 bg-dark bg-opacity-50') style="z-index:1040; display: none;"></div>
 
     {{-- Main --}}
-    <main id="main-content">
+    <main id="main-content" class="container-xxl py-3 py-md-4">
 
         <!-- Page Header -->
-        <div @class('page-header-container mb-4')>
-            <div @class('d-flex justify-content-between align-items-center page-header')>
+        <div class="page-header-container mb-3 mb-md-4">
+            <div class="d-flex justify-content-between align-items-center page-header flex-wrap gap-2">
                 <div @class('d-flex align-items-center')>
                     <div @class('dashboard-logo me-3')>
                         <img src="{{ asset('images/logo.png') }}" alt="Jetlouge Travels" @class('logo-img')>
                     </div>
                     <div>
-                        <h2 @class('fw-bold mb-1')>@yield('page-title')</h2>
-                        <p @class('text-muted mb-0')>@yield('page-subtitle')</p>
+                        <h2 class="fw-bold mb-1">@yield('page-title')</h2>
+                        <p class="text-muted mb-0">@yield('page-subtitle')</p>
                     </div>
                 </div>
                 <nav aria-label="breadcrumb">
-                    <ol @class('breadcrumb mb-0')>
-                        <li @class('breadcrumb-item')>
-                            <a href="{{ route('dashboard') }}" @class('text-decoration-none')>Home</a>
+                    <ol class="breadcrumb mb-0">
+                        <li class="breadcrumb-item">
+                            <a href="{{ route('dashboard') }}" class="text-decoration-none">Home</a>
                         </li>
-                        <li @class('breadcrumb-item active') aria-current="page">@yield('breadcrumbs')</li>
+                        <li class="breadcrumb-item active" aria-current="page">@yield('breadcrumbs')</li>
                     </ol>
                 </nav>
             </div>
         </div>
 
         {{-- Page Body --}}
-        @yield('content')
+        <div class="bg-transparent">
+            @yield('content')
+        </div>
 
     </main>
 

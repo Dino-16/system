@@ -1,11 +1,14 @@
 <div class="container py-4">
 
     <div class="row justify-content-center">
-        <div class="col-12 col-lg-10 col-xxl-8">
-            <div class="card border-0 shadow-sm mb-4">
-                <div class="card-header bg-white border-0 pt-4 pb-3">
-                    <h5 class="mb-1 fw-bold">📁 New Hire Document Checklist</h5>
-                    <p class="text-muted mb-0">Use this checklist to track required submissions for onboarding.</p>
+        <div class="col-12 col-lg-12 col-xxl-12">
+            <div class="card border-0 shadow-sm rounded-3 mb-4">
+                <div class="card-header bg-white border-0 pt-4 pb-2">
+                    <h5 class="mb-1 fw-semibold d-flex align-items-center gap-2">
+                        <i class="bi bi-folder2-open text-primary"></i>
+                        New Hire Document Checklist
+                    </h5>
+                    <p class="text-muted mb-0 small">Use this checklist to track required submissions for onboarding.</p>
                 </div>
 
                 <div class="card-body pt-0">
@@ -15,9 +18,9 @@
                     @endif
 
                     {{-- New Hire Name --}}
-                    <div class="mb-4">
-                        <label for="new_hire_name" class="form-label fw-bold">New Hire Name</label>
-                        <select class="form-select" id="new_hire_name" wire:model="newHireName">
+                    <div class="mb-3">
+                        <label for="new_hire_name" class="form-label fw-semibold">New Hire Name</label>
+                        <select class="form-select shadow-sm" id="new_hire_name" wire:model="newHireName">
                             <option value="">Select a new hire</option>
                             @foreach ($newHireList as $hire)
                                 <option value="{{ $hire['name'] }}">{{ $hire['name'] }}</option>
@@ -30,62 +33,60 @@
 
                     {{-- Document Checklist (responsive table) --}}
                     <div class="table-responsive mb-3">
-                        <table class="table table-bordered align-middle mb-0">
+                        <table class="table table-striped table-hover align-middle mb-0 border w-100">
                             <thead class="table-light">
                                 <tr>
                                     <th style="width:6rem" class="text-center">#</th>
-                                    <th>Document</th>
-                                    <th style="width:10rem" class="text-center">Submitted</th>
+                                    <th class="fw-semibold" style="width:70%">Document</th>
+                                    <th class="text-center fw-semibold" style="width:24%">Submitted</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ([
                                     ['label' => 'Resume', 'field' => 'resume'],
-                                    ['label' => 'Signed Application Form', 'field' => 'signed_application_form'],
+                                    ['label' => 'Medical Certificate', 'field' => 'medical_certificate'],
                                     ['label' => 'Valid Government ID', 'field' => 'valid_government_id'],
                                     ['label' => 'Transcript of Records', 'field' => 'transcript_of_records'],
-                                    ['label' => 'Medical Certificate', 'field' => 'medical_certificate'],
                                     ['label' => 'NBI Clearance', 'field' => 'nbi_clearance'],
                                     ['label' => 'Barangay Clearance', 'field' => 'barangay_clearance'],
                                 ] as $index => $doc)
                                     <tr>
-                                        <td class="text-center">
-                                            <span class="badge bg-light text-dark border">{{ $index + 1 }}</span>
+                                        <td class="text-center py-3">
+                                            <span class="badge bg-light text-dark border fw-normal">{{ $index + 1 }}</span>
                                         </td>
-                                        <td class="fw-medium">{{ $doc['label'] }}</td>
-                                        <td class="text-center">
+                                        <td class="fw-normal py-3">{{ $doc['label'] }}</td>
+                                        <td class="text-center py-3">
                                             <input type="checkbox" class="form-check-input"
                                                    wire:model.defer="{{ $doc['field'] }}"
                                                    id="{{ $doc['field'] }}">
                                         </td>
                                     </tr>
-                                @endforeach
+                            @endforeach
                             </tbody>
                         </table>
                     </div>
 
                     {{-- Save Button --}}
                     <div class="mt-3">
-                        <button wire:click="saveChecklist" class="btn btn-primary w-100">
-                            💾 Save Checklist
+                        <button wire:click="saveChecklist" class="btn btn-primary w-100 shadow-sm rounded-3">
+                            <i class="bi bi-save me-1"></i> Save Checklist
                         </button>
                     </div>
                 </div>
             </div>
-        </div>
     </div>
 
     {{-- === SUBMITTED CHECKLISTS TABLE === --}}
     <div class="pt-3">
         {{-- Table Header --}}
         <div class="p-4 bg-white rounded border border-bottom-0">
-            <h4 class="mb-1">📄 Submitted Document Checklists</h4>
-            <p class="text-secondary mb-0">Overview of onboarding document submissions</p>
+            <h4 class="mb-1 d-flex align-items-center gap-2"><i class="bi bi-journal-check text-primary"></i> Submitted Document Checklists</h4>
+            <p class="text-secondary mb-0 small">Overview of onboarding document submissions</p>
         </div>
 
         {{-- Table Content --}}
         <div class="table-responsive border rounded bg-white px-3 px-md-4 px-lg-5 rounded-top-0 border-top-0">
-            <table class="table align-middle mb-0">
+            <table class="table table-striped align-middle mb-0">
                 <thead class="bg-dark">
                     <tr>
                         <th class="text-secondary fw-normal">#</th>
