@@ -99,7 +99,7 @@
                         </div>
                     </div>
                 @empty
-                    <div class="text-muted">No recognitions yet.</div>
+                    <div class="text-center text-muted">No latest recognitions yet.</div>
                 @endforelse
             </div>
         </div>

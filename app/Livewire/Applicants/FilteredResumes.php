@@ -29,6 +29,10 @@ class FilteredResumes extends Component
     {
         $this->selectedCandidate = ResumeData::findOrFail($this->selectedCandidateId);
 
+        // Determine status based on interview date
+        $today = \Carbon\Carbon::now('Asia/Manila')->toDateString();
+        $status = ($this->scheduleDate <= $today) ? 'Initial' : 'Scheduled';
+
         Candidate::create([
             'applicant_job_id'       => $this->selectedCandidate->applicant_job_id, 
             'candidate_job_title'    => $this->selectedCandidate->applicant_job_title, 
@@ -48,7 +52,7 @@ class FilteredResumes extends Component
             'education'              => $this->selectedCandidate->applicant_education,
             'interviewDate'          => $this->scheduleDate,
             'interviewTime'          => $this->scheduleTime,
-            'status'                 => 'Scheduled',
+            'status'                 => $status,
         ]);
 
         $this->selectedCandidate->delete();

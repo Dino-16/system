@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Http;
 use App\Models\Recruitment_Management\JobPosting;
 use App\Models\Applicant_Management\Application;
 use App\Models\Applicant_Management\Candidate;
+use App\Models\Social_Recognition\Recognition;
 
 class Dashboard extends Component
 {
@@ -28,6 +29,7 @@ class Dashboard extends Component
         $totalApplicants = Application::count();
         $totalCandidates = Candidate::count();
 
+
         $employeeResponse = Http::get('http://hr4.jetlougetravels-ph.com/api/employees');
         $employeeData = $employeeResponse->json();
         $totalEmployee = is_array($employeeData) ? count($employeeData) : 0;
@@ -40,6 +42,7 @@ class Dashboard extends Component
             'Interviewing' => Candidate::whereIn('status', ['Initial', 'Final'])->count(),
         ];
 
+        $recognitions = Recognition::latest()->take(1)->get();
 
         return view('livewire.dashboard', [
             'totalPostedJobs' => $totalPostedJobs,
@@ -47,6 +50,7 @@ class Dashboard extends Component
             'totalCandidates' => $totalCandidates,
             'totalEmployee' => $totalEmployee,
             'statusCountCandidates' => $statusCountCandidates,
+            'recognitions' => $recognitions 
         ]);
     }
 }

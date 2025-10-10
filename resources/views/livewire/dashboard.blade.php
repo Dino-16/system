@@ -53,7 +53,33 @@
 
     {{-- Interview Pipeline --}}
     <div class="row pb-3">
-        <div class="col-md-8"></div>
+        <div class="col-md-5">
+        </div>
+        <div class="col-md-3">
+            @forelse ($recognitions as $recognition)
+                <div class="row card d-flex justify-content-center flex-column align-items-center border p-3 mb-3 h-100 rounded">
+                    {{-- Employee Image (placeholder or dynamic) --}}
+                    @php
+                        $firstLetter = strtoupper(substr($recognition->name, 0, 1));
+                    @endphp
+                        <div class="rounded-circle bg-primary text-white d-flex justify-content-center align-items-center mb-3"
+                            style="width: 80px; height: 80px; font-size: 32px; font-weight: bold;">
+                            {{ $firstLetter }}
+                        </div>
+
+                    {{-- Recognition Details --}}
+                    <div class="col-sm-12 text-center">
+                        <h5 class="mb-1">{{ $recognition->name }}</h5>
+                        <h6 class="text-muted mb-2">{{ $recognition->type }}</h6>
+                        <p class="mb-1">{{ $recognition->message }}</p>
+                        <p class="text-muted small">{{ \Carbon\Carbon::parse($recognition->date)->format('F j, Y') }}</p>
+                    </div>
+
+                </div>
+            @empty
+                <div class="text-center text-muted">No latest recognitions yet.</div>
+            @endforelse
+        </div>
         <div class="col-md-4">
             <div class="card shadow-sm border rounded-3 p-4 mx-auto">
                 <h2 class="text-center fs-5 fw-bold text-secondary mb-4">
@@ -73,7 +99,8 @@
 
     {{-- Live Date & Time --}}
     <div class="row">
-        <div class="col-md-8"></div>
+        <div class="col-md-8">
+        </div>
         <div class="col-md-4">
             <div wire:poll.1000ms="updateDateTime" class="card shadow-sm border rounded-4 p-4 text-center">
                 <div class="mb-2">

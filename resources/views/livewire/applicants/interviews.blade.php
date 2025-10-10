@@ -53,7 +53,7 @@
                             @if($candidate->status === 'Scheduled' || $candidate->status === 'Initial')
                                 {{-- Initial stage --}}
                                 <button 
-                                    @class(['btn', 'btn-success', 'btn-sm']) 
+                                    @class(['btn', 'btn-primary', 'btn-sm']) 
                                     wire:click="final({{ $candidate->id }})"
                                 >
                                     Proceed Final
