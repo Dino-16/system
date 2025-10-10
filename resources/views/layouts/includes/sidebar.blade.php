@@ -84,15 +84,15 @@
                         </a>
                     </li>
                     <li @class('nav-item')>
-                        <a href="{{ route('interviews') }}"
-                        @class('nav-link text-dark' . (request()->is('interviews') ? 'active' : ''))>
-                            <i @class('bi bi-calendar-event me-2')></i> Interviews
-                        </a>
-                    </li>
-                    <li @class('nav-item')>
                         <a href="{{ route('request-rooms') }}"
                         @class('nav-link text-dark' . (request()->is('request-rooms') ? 'active' : ''))>
                             <i @class('bi bi-door-open me-2')></i> Request Room
+                        </a>
+                    </li>
+                    <li @class('nav-item')>
+                        <a href="{{ route('interviews') }}"
+                        @class('nav-link text-dark' . (request()->is('interviews') ? 'active' : ''))>
+                            <i @class('bi bi-calendar-event me-2')></i> Interviews
                         </a>
                     </li>
                     <li @class('nav-item')>

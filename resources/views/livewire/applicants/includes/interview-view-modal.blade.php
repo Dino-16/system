@@ -3,6 +3,7 @@
     <div @class(['modal-dialog', 'modal-xl', 'modal-dialog-centered'])>
         <div @class(['modal-content', 'border-0', 'shadow-lg', 'rounded-4'])>
             <div @class(['modal-header', 'bg-primary', 'text-white', 'rounded-top-4'])>
+                <i @class('bi bi-person me-2')></i>
                 <h5 @class(['modal-title'])>Candidate Profile</h5>
                 <button type="button" @class(['btn-close', 'btn-close-white']) wire:click="closeModal"></button>
             </div>

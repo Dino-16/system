@@ -3,6 +3,7 @@
     <div @class('modal-dialog modal-md modal-dialog-centered')>
         <div @class('modal-content')>
             <div @class('modal-header bg-primary text-white')>
+                <i @class('bi bi-calendar-check me-2')></i>
                 <h5 @class('modal-title')>Schedule Interview</h5>
                 <button type="button" @class('btn-close btn-close-white') wire:click="closeSetCandidate"></button>
             </div>

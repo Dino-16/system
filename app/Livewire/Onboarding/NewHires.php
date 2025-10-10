@@ -4,6 +4,7 @@ namespace App\Livewire\Onboarding;
 
 use Livewire\Component;
 use Livewire\WithPagination;
+use Livewire\Attributes\Url;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
@@ -13,7 +14,10 @@ class NewHires extends Component
     use WithPagination;
 
     public $employees = [];
+    
+    #[Url(keep: true)]
     public $search = '';
+    
     public $perPage = 10;
 
     public function mount()
@@ -37,14 +41,19 @@ class NewHires extends Component
         // Always convert to collection for safe pagination
         $collection = collect($this->employees);
 
-        // Search filter
-        $filtered = $collection->filter(function ($employee) {
-            $search = strtolower($this->search);
-            return str_contains(strtolower($employee['name'] ?? ''), $search)
-                || str_contains(strtolower($employee['email'] ?? ''), $search)
-                || str_contains(strtolower($employee['role'] ?? ''), $search)
-                || str_contains(strtolower($employee['department'] ?? ''), $search);
-        });
+        // Search filter - searches both name and position
+        $filtered = $collection;
+        
+        if (!empty($this->search)) {
+            $searchTerm = strtolower(trim($this->search));
+            
+            $filtered = $collection->filter(function ($employee) use ($searchTerm) {
+                $name = strtolower($employee['name'] ?? '');
+                $role = strtolower($employee['role'] ?? '');
+                
+                return str_contains($name, $searchTerm) || str_contains($role, $searchTerm);
+            });
+        }
 
         // Paginate (client-side)
         $employees = $this->paginateCollection($filtered);
