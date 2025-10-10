@@ -18,6 +18,9 @@
                 </tr>
             </thead>
             <tbody>
+                <tr>
+                    <td colspan="5" @class('text-muted text-center')>Not Integrated</td>
+                </tr>
             </tbody>
         </table>
 
