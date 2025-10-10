@@ -77,6 +77,25 @@ class DocumentChecklist extends Component
         session()->flash('success', 'Checklist saved successfully!');
     }
 
+    public function editChecklist($id)
+    {
+        $doc = Document::findOrFail($id);
+
+        $this->newHireName = $doc->new_hire_name;
+        $this->existingChecklist = $doc;
+
+        $this->resume = (bool) $doc->resume;
+        $this->signed_application_form = (bool) $doc->signed_application_form;
+        $this->valid_government_id = (bool) $doc->valid_government_id;
+        $this->transcript_of_records = (bool) $doc->transcript_of_records;
+        $this->medical_certificate = (bool) $doc->medical_certificate;
+        $this->nbi_clearance = (bool) $doc->nbi_clearance;
+        $this->barangay_clearance = (bool) $doc->barangay_clearance;
+        $this->signed_job_offer_contract = (bool) $doc->signed_job_offer_contract;
+
+        session()->flash('success', 'Loaded checklist for update.');
+    }
+
     public function render()
     {
         $checklists = Document::latest()->get();

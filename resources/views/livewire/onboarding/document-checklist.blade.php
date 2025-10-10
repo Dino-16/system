@@ -93,6 +93,7 @@
                         <th class="text-secondary fw-normal">New Hire</th>
                         <th class="text-secondary fw-normal">Submitted Documents</th>
                         <th class="text-secondary fw-normal text-center">Status</th>
+                        <th class="text-secondary fw-normal text-end">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -122,28 +123,42 @@
                             </td>
                             <td class="text-center">
                                 @php
-                                    $total = 7;
+                                    $total = 6;
                                     $submitted = collect([
                                         $item->resume,
-                                        $item->signed_application_form,
                                         $item->valid_government_id,
                                         $item->transcript_of_records,
                                         $item->medical_certificate,
                                         $item->nbi_clearance,
                                         $item->barangay_clearance,
                                     ])->filter()->count();
+
+                                    $statusLabel = 'Pending';
+                                    $statusClass = 'bg-secondary';
+                                    if ($submitted === $total) {
+                                        $statusLabel = 'Completed';
+                                        $statusClass = 'bg-success';
+                                    } elseif ($submitted > 0) {
+                                        $statusLabel = 'Incomplete';
+                                        $statusClass = 'bg-warning text-dark';
+                                    }
                                 @endphp
 
                                 <span 
-                                    class="badge rounded-pill px-3 py-2 
-                                        {{ $submitted === $total ? 'bg-success' : 'bg-warning text-dark' }}">
-                                    {{ $submitted === $total ? 'Complete' : 'Incomplete' }}
+                                    class="badge rounded-pill px-3 py-2 {{ $statusClass }}">
+                                    {{ $statusLabel }}
                                 </span>
+                            </td>
+                            <td class="text-end">
+                                <button type="button" class="btn btn-sm btn-outline-primary"
+                                        wire:click="editChecklist({{ $item->id }})">
+                                    Update
+                                </button>
                             </td>
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="4" class="text-center text-muted">No checklists found.</td>
+                            <td colspan="5" class="text-center text-muted">No checklists found.</td>
                         </tr>
                     @endforelse
                 </tbody>

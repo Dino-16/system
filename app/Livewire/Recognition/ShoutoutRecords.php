@@ -12,8 +12,64 @@ class ShoutoutRecords extends Component
 
     public $search = '';
 
+    // Edit form fields
+    public $selectedId = null;
+    public $name = '';
+    public $type = '';
+    public $date = '';
+    public $message = '';
+
     public function updatingSearch()
     {
+        $this->resetPage();
+    }
+
+    public function rules()
+    {
+        return [
+            'name' => ['required','string','max:255'],
+            'type' => ['required','string','max:255'],
+            'date' => ['required','date'],
+            'message' => ['required','string'],
+        ];
+    }
+
+    public function edit($id)
+    {
+        $rec = Recognition::findOrFail($id);
+        $this->selectedId = $rec->id;
+        $this->name = $rec->name;
+        $this->type = $rec->type;
+        $this->date = $rec->date;
+        $this->message = $rec->message;
+    }
+
+    public function cancelEdit()
+    {
+        $this->reset(['selectedId','name','type','date','message']);
+    }
+
+    public function updateRecognition()
+    {
+        $this->validate();
+        $rec = Recognition::findOrFail($this->selectedId);
+        $rec->update([
+            'name' => $this->name,
+            'type' => $this->type,
+            'date' => $this->date,
+            'message' => $this->message,
+        ]);
+
+        session()->flash('success', 'Recognition updated successfully.');
+        $this->cancelEdit();
+    }
+
+    public function delete($id)
+    {
+        $rec = Recognition::findOrFail($id);
+        $rec->delete();
+        session()->flash('success', 'Recognition deleted.');
+        // refresh pagination if needed
         $this->resetPage();
     }
 
