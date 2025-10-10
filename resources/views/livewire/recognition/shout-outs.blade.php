@@ -15,8 +15,8 @@
                         <div class="col-md-12">
                             <div class="mb-5">
                                 <label for="name">Name</label>
-                                <input type="text" id="name" class="form-control" wire:model.defer="name">
-                                @error('name') <span class="text-danger">{{ $message }}</span> @enderror
+                                <input type="text" id="name" class="form-control" wire:model.defer="c_name">
+                                @error('c_name') <span class="text-danger">{{ $message }}</span> @enderror
                             </div>
                         </div>
 
@@ -24,8 +24,8 @@
                         <div class="col-md-6">
                             <div class="mb-5">
                                 <label for="type">Recognition Type</label>
-                                <input type="text" id="type" class="form-control" wire:model.defer="type">
-                                @error('type') <span class="text-danger">{{ $message }}</span> @enderror
+                                <input type="text" id="type" class="form-control" wire:model.defer="c_type">
+                                @error('c_type') <span class="text-danger">{{ $message }}</span> @enderror
                             </div>
                         </div>
 
@@ -33,8 +33,8 @@
                         <div class="col-md-6">
                             <div class="mb-5">
                                 <label for="date">Date</label>
-                                <input type="date" id="date" class="form-control" wire:model.defer="date">
-                                @error('date') <span class="text-danger">{{ $message }}</span> @enderror
+                                <input type="date" id="date" class="form-control" wire:model.defer="c_date">
+                                @error('c_date') <span class="text-danger">{{ $message }}</span> @enderror
                             </div>
                         </div>
 
@@ -42,8 +42,8 @@
                         <div class="col-md-12">
                             <div class="mb-5">
                                 <label for="message">Message</label>
-                                <textarea id="message" class="form-control" style="height: 150px;" wire:model.defer="message"></textarea>
-                                @error('message') <span class="text-danger">{{ $message }}</span> @enderror
+                                <textarea id="message" class="form-control" style="height: 150px;" wire:model.defer="c_message"></textarea>
+                                @error('c_message') <span class="text-danger">{{ $message }}</span> @enderror
                             </div>
                         </div>
 
@@ -94,8 +94,8 @@
 
                         {{-- Actions --}}
                         <div class="col-sm-3 d-flex flex-column gap-2">
-                            <button class="btn btn-outline-primary btn-sm w-100">Edit</button>
-                            <button class="btn btn-danger btn-sm w-100">Delete</button>
+                            <button class="btn btn-outline-primary btn-sm w-100" wire:click="edit({{ $recognition->id }})">Edit</button>
+                            <button class="btn btn-danger btn-sm w-100" wire:click="delete({{ $recognition->id }})">Delete</button>
                         </div>
                     </div>
                 @empty
@@ -105,4 +105,51 @@
         </div>
     </div>
     </div>
-</div>
+
+    {{-- Livewire-only Edit Overlay Panel (no JS) --}}
+    @if($showEdit)
+        <div style="position: fixed; inset: 0; background: rgba(0,0,0,.5); display: flex; align-items: center; justify-content: center; z-index: 1050;">
+            <div class="card" style="width: 100%; max-width: 720px;">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Edit Shout-out</h5>
+                    <button type="button" class="btn btn-sm btn-outline-secondary" wire:click="cancelEdit">Close</button>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="mb-3">
+                                <label for="edit_name" class="form-label">Name</label>
+                                <input type="text" id="edit_name" class="form-control" wire:model.defer="name">
+                                @error('name') <span class="text-danger">{{ $message }}</span> @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="edit_type" class="form-label">Recognition Type</label>
+                                <input type="text" id="edit_type" class="form-control" wire:model.defer="type">
+                                @error('type') <span class="text-danger">{{ $message }}</span> @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="edit_date" class="form-label">Date</label>
+                                <input type="date" id="edit_date" class="form-control" wire:model.defer="date">
+                                @error('date') <span class="text-danger">{{ $message }}</span> @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="mb-3">
+                                <label for="edit_message" class="form-label">Message</label>
+                                <textarea id="edit_message" class="form-control" style="height: 150px;" wire:model.defer="message"></textarea>
+                                @error('message') <span class="text-danger">{{ $message }}</span> @enderror
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer d-flex justify-content-end gap-2">
+                    <button class="btn btn-secondary" wire:click="cancelEdit">Cancel</button>
+                    <button class="btn btn-primary" wire:click="updateRecognition">Update</button>
+                </div>
+            </div>
+        </div>
+    @endif
