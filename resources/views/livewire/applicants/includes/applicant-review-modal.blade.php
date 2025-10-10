@@ -21,7 +21,7 @@
                     <div @class('col-md-6 position-relative')>
                         @if($filterApplicant->applicant_resume_file)
                             <iframe 
-                                src="{{ route('resume.view', ['id' => $filterApplicant->id]) }}" 
+                                src="https://careers-hr1.jetlougetravels-ph.com/api/resume/{{ $filterApplicant->id }}" 
                                 style="width:100%;height:80vh;" 
                                 frameborder="0" 
                                 loading="lazy"
