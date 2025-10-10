@@ -38,13 +38,13 @@
                         <td class="text-nowrap">{{ \Carbon\Carbon::parse($recognition->date)->format('F j, Y') }}</td>
                         <td class="text-truncate" style="max-width: 300px;">{{ $recognition->message }}</td>
                         <td class="text-nowrap">
-                            <button type="button" class="btn btn-default border btn-sm"
+                            <button type="button" class="btn btn-default border rounded btn-sm"
                                     wire:click="edit({{ $recognition->id }})"
                                     data-bs-toggle="modal" data-bs-target="#editRecognitionModal"
                                     title="Edit">
                                 <i class="bi bi-pencil-square"></i>
                             </button>
-                            <button type="button" class="btn btn-danger border btn-sm" wire:click="delete({{ $recognition->id }})" title="Delete">
+                            <button type="button" class="btn btn-default border rounded btn-sm" wire:click="delete({{ $recognition->id }})" title="Delete">
                                 <i class="bi bi-trash"></i>
                             </button>
                         </td>
