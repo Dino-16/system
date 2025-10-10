@@ -21,7 +21,7 @@
         <li @class('nav-item')>
             <a href="#recruitmentMenu"
             role="button"
-            aria-expanded="false"
+            aria-expanded="{{ (request()->is('requisitions') || request()->is('job-postings')) ? 'true' : 'false' }}"
             aria-controls="recruitmentMenu"
             data-bs-toggle="collapse"
             @class('nav-link text-dark d-flex justify-content-between align-items-center')>
@@ -29,7 +29,7 @@
                 <i @class('bi bi-chevron-down small')></i>
             </a>
 
-            <div id="recruitmentMenu" @class('collapse ps-4')>
+            <div id="recruitmentMenu" @class('collapse ps-4 ' . ((request()->is('requisitions') || request()->is('job-postings')) ? 'show' : ''))>
                 <ul @class('nav flex-column')>
                     <li @class('nav-item')>
                         <a href="{{ route('requisitions') }}"
@@ -55,7 +55,7 @@
         <li @class('nav-item')>
             <a href="#applicantsMenu"
             role="button"
-            aria-expanded="false"
+            aria-expanded="{{ (request()->is('applications') || request()->is('filtered-resumes') || request()->is('candidates') || request()->is('interviews') || request()->is('request-rooms') || request()->is('offer-acceptance')) ? 'true' : 'false' }}"
             aria-controls="applicantsMenu"
             data-bs-toggle="collapse"
             @class('nav-link text-dark d-flex justify-content-between align-items-center')>
@@ -63,7 +63,7 @@
                 <i @class('bi bi-chevron-down small')></i>
             </a>
 
-            <div id="applicantsMenu" @class('collapse ps-4')>
+            <div id="applicantsMenu" @class('collapse ps-4 ' . ((request()->is('applications') || request()->is('filtered-resumes') || request()->is('candidates') || request()->is('interviews') || request()->is('request-rooms') || request()->is('offer-acceptance')) ? 'show' : ''))>
                 <ul @class('nav flex-column')>
                     <li @class('nav-item')>
                         <a href="{{ route('applications') }}"
@@ -108,7 +108,7 @@
         <li @class('nav-item')>
             <a href="#onboardingMenu"
             role="button"
-            aria-expanded="false"
+            aria-expanded="{{ (request()->is('new-hires') || request()->is('document-checklist') || request()->is('orientation-plan')) ? 'true' : 'false' }}"
             aria-controls="onboardingMenu"
             data-bs-toggle="collapse"
             @class('nav-link text-dark d-flex justify-content-between align-items-center')>
@@ -116,7 +116,7 @@
                 <i @class('bi bi-chevron-down small')></i>
             </a>
 
-            <div id="onboardingMenu" @class('collapse ps-4')>
+            <div id="onboardingMenu" @class('collapse ps-4 ' . ((request()->is('new-hires') || request()->is('document-checklist') || request()->is('orientation-plan')) ? 'show' : ''))>
                 <ul @class('nav flex-column')>
                     <li @class('nav-item')>
                         <a href="{{ route('new-hires') }}"
@@ -143,7 +143,7 @@
         <li @class('nav-item')>
             <a href="#performanceMenu"
             role="button"
-            aria-expanded="false"
+            aria-expanded="{{ (request()->is('new-hire-reviews') || request()->is('employee-evaluations') || request()->is('evaluation-form')) ? 'true' : 'false' }}"
             aria-controls="performanceMenu"
             data-bs-toggle="collapse"
             @class('nav-link text-dark d-flex justify-content-between align-items-center')>
@@ -151,7 +151,7 @@
                 <i @class('bi bi-chevron-down small')></i>
             </a>
 
-            <div id="performanceMenu" @class('collapse ps-4')>
+            <div id="performanceMenu" @class('collapse ps-4 ' . ((request()->is('new-hire-reviews') || request()->is('employee-evaluations') || request()->is('evaluation-form')) ? 'show' : ''))>
                 <ul @class('nav flex-column')>
                     <li @class('nav-item')>
                         <a href="{{ route('new-hire-reviews') }}"
@@ -178,7 +178,7 @@
         <li @class('nav-item')>
             <a href="#recognitionMenu"
             role="button"
-            aria-expanded="false"
+            aria-expanded="{{ (request()->is('shout-outs') || request()->is('shoutout-records')) ? 'true' : 'false' }}"
             aria-controls="recognitionMenu"
             data-bs-toggle="collapse"
             @class('nav-link text-dark d-flex justify-content-between align-items-center')>
@@ -186,7 +186,7 @@
                 <i @class('bi bi-chevron-down small')></i>
             </a>
 
-            <div id="recognitionMenu" @class('collapse ps-4')>
+            <div id="recognitionMenu" @class('collapse ps-4 ' . ((request()->is('shout-outs') || request()->is('shoutout-records')) ? 'show' : ''))>
                 <ul @class('nav flex-column')>
                     <li @class('nav-item')>
                         <a href="{{ route('shout-outs') }}"
@@ -205,7 +205,7 @@
         <li @class('nav-item')>
             <a href="#settingMenu"
             role="button"
-            aria-expanded="false"
+            aria-expanded="{{ (request()->is('user-logs') || request()->is('account')) ? 'true' : 'false' }}"
             aria-controls="settingMenu"
             data-bs-toggle="collapse"
             @class('nav-link text-dark d-flex justify-content-between align-items-center')>
@@ -213,7 +213,7 @@
                 <i @class('bi bi-chevron-down small')></i>
             </a>
 
-            <div id="settingMenu" @class('collapse ps-4')>
+            <div id="settingMenu" @class('collapse ps-4 ' . ((request()->is('user-logs') || request()->is('account')) ? 'show' : ''))>
                 <ul @class('nav flex-column')>
                     <li @class('nav-item')>
                         <a href="{{ route('user-logs') }}"
