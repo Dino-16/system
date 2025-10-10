@@ -3,11 +3,10 @@
     <div class="row justify-content-center">
         <div class="col-12 col-lg-12 col-xxl-12">
             <div class="card border-0 shadow-sm rounded-3 mb-4">
-                <div class="card-header bg-white border-0 pt-4 pb-2">
-                    <h5 class="mb-1 fw-semibold d-flex align-items-center gap-2">
-                        <i class="bi bi-folder2-open text-primary"></i>
+                <div class="card-header bg-white border-0 pt-4 pb-3">
+                    <h3 class="mb-1 fw-semibold d-flex align-items-center gap-2">
                         New Hire Document Checklist
-                    </h5>
+                    </h3>
                     <p class="text-muted mb-0 small">Use this checklist to track required submissions for onboarding.</p>
                 </div>
 
@@ -33,12 +32,12 @@
 
                     {{-- Document Checklist (responsive table) --}}
                     <div class="table-responsive mb-3">
-                        <table class="table table-striped table-hover align-middle mb-0 border w-100">
-                            <thead class="table-light">
+                        <table class="table">
+                            <thead>
                                 <tr>
-                                    <th style="width:6rem" class="text-center">#</th>
-                                    <th class="fw-semibold" style="width:70%">Document</th>
-                                    <th class="text-center fw-semibold" style="width:24%">Submitted</th>
+                                    <th class="text-secondary fw-normal">#</th>
+                                    <th class="text-secondary fw-normal">Document</th>
+                                    <th class="text-secondary fw-normal">Submitted</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -51,11 +50,11 @@
                                     ['label' => 'Barangay Clearance', 'field' => 'barangay_clearance'],
                                 ] as $index => $doc)
                                     <tr>
-                                        <td class="text-center py-3">
+                                        <td class=" py-3">
                                             <span class="badge bg-light text-dark border fw-normal">{{ $index + 1 }}</span>
                                         </td>
-                                        <td class="fw-normal py-3">{{ $doc['label'] }}</td>
-                                        <td class="text-center py-3">
+                                        <td class="fw-normal py-3 ">{{ $doc['label'] }}</td>
+                                        <td class="py-3">
                                             <input type="checkbox" class="form-check-input"
                                                    wire:model.defer="{{ $doc['field'] }}"
                                                    id="{{ $doc['field'] }}">
@@ -85,13 +84,13 @@
 
         {{-- Table Header --}}
         <div class="p-4 bg-white rounded border border-bottom-0">
-            <h4 class="mb-1 d-flex align-items-center gap-2"><i class="bi bi-journal-check text-primary"></i> Submitted Document Checklists</h4>
+            <h3 class="mb-1 d-flex align-items-center gap-2">Submitted Document Checklists</h3>
             <p class="text-secondary mb-0 small">Overview of onboarding document submissions</p>
         </div>
 
         {{-- Table Content --}}
         <div class="table-responsive border rounded bg-white px-3 px-md-4 px-lg-5 rounded-top-0 border-top-0">
-            <table class="table table-striped align-middle mb-0">
+            <table class="table">
                 <thead class="bg-dark">
                     <tr>
                         <th class="text-secondary fw-normal">#</th>
@@ -156,8 +155,10 @@
                             </td>
                             <td class="text-end">
                                 <button type="button" class="btn btn-sm btn-outline-primary"
-                                        wire:click="editChecklist({{ $item->id }})">
-                                    Update
+                                    title="Edit"
+                                    wire:click="editChecklist({{ $item->id }})"
+                                    >
+                                    <i class="bi bi-pencil-square"></i>
                                 </button>
                             </td>
                         </tr>

@@ -1,6 +1,6 @@
 <div>
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h5 class="mb-0">My Room Requests</h5>
+        <h3 class="mb-0">Room Requests</h3>
         <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#requestRoomModal">
             <i class="bi bi-plus-circle me-2"></i>Request Room
         </button>
