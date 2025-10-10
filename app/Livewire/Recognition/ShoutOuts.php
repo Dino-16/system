@@ -34,7 +34,7 @@ class ShoutOuts extends Component
 
     public function render()
     {
-        $recognitions = Recognition::latest()->take(5)->get(); // Show latest 5
+        $recognitions = Recognition::latest()->take(3)->get(); // Show latest 5
 
         return view('livewire.recognition.shout-outs', [
             'recognitions' => $recognitions,

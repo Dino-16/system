@@ -13,7 +13,7 @@ class Interviews extends Component
 
     public $showModal = false;
 
-    public $interviewStage = null;
+    public $interviewStage = 'All';
 
     public function viewCandidate($id)
     {

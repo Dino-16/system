@@ -1,4 +1,6 @@
 <div>
+    {{-- Modal --}}
+    @include('livewire.applicants.includes.card-application') 
 
     <x-alert-success />
 
@@ -12,28 +14,23 @@
         {{-- Filter Dropdown --}}
         <div @class('dropdown')>
             <button type="button" id="filterDropdown" data-bs-toggle="dropdown" aria-expanded="false"
-                @class('btn btn-outline-body-tertiary dropdown-toggle d-flex align-items-center')>
+                @class('btn btn-outline-body-tertiary dropdown-toggle d-flex align-items-center border rounded bg-white')>
                 <i @class('bi bi-funnel-fill me-2')></i>Filter: {{ ucfirst($statusFilter) }}
             </button>
             <ul @class('dropdown-menu') aria-labelledby="filterDropdown">
                 <li>
-                    <a @class('dropdown-item') wire:click="$set('statusFilter All')">
+                    <a @class('dropdown-item') wire:click="$set('statusFilter', 'All')">
                         <i @class('bi bi-list-ul me-2')></i> All
                     </a>
                 </li>
                 <li>
-                    <a @class('dropdown-item') wire:click="$set('statusFilter Pending')">
-                        <i @class('bi bi-hourglass-split me-2')></i> Pending
+                    <a @class('dropdown-item') wire:click="$set('statusFilter', 'Not Filtered')">
+                        <i @class('bi bi-slash-circle me-2 text-success')></i> Not Filtered
                     </a>
                 </li>
                 <li>
-                    <a @class('dropdown-item') wire:click="$set('statusFilter Passed')">
-                        <i @class('bi bi-check-circle-fill me-2 text-success')></i> Passed
-                    </a>
-                </li>
-                <li>
-                    <a @class('dropdown-item') wire:click="$set('statusFilter Failed')">
-                        <i @class('bi bi-x-circle-fill me-2 text-danger')></i> Failed
+                    <a @class('dropdown-item') wire:click="$set('statusFilter', 'Filtered')">
+                        <i @class('bi bi-filter-circle me-2 text-danger')></i> Filtered
                     </a>
                 </li>
             </ul>
@@ -122,15 +119,14 @@
                             <span 
                                 @class([
                                     'badge rounded-pill px-3 py-2',
-                                    'bg-primary' => $applicant['status'] === 'Pending',
-                                    'bg-success' => $applicant['status'] === 'Passed',
-                                    'bg-secondary' => $applicant['status'] === 'Failed',
+                                    'bg-primary' => $applicant['status'] === 'Filtered',
+                                    'bg-secondary' => $applicant['status'] === 'Not Filtered',
                                 ])
                             >
                                 {{ ucfirst($applicant['status']) }}
                             </span>
                         </td>
-                        <td @class('text-start')>{{ $applicant->created_at }}</td>
+                        <td @class('text-start')>{{ $applicant->created_at->format('Y-m-d') }}</td>
                         <td @class('text-capitalize')>
                             @if($applicant->status == 'Filtered')
                                 <button type="button" class="btn btn-secondary btn-sm" disabled>Done</button>

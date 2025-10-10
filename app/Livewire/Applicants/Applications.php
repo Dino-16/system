@@ -84,6 +84,9 @@ class Applications extends Component
             'ratings'                => $validated['status'],
         ]);
 
+        $this->filterApplicant->status = 'Filtered';
+        $this->filterApplicant->save();
+
         session()->flash('success', 'Applicant successfully added to filtered list.');
         $this->closeModal();
     }
@@ -91,9 +94,8 @@ class Applications extends Component
     public function render()
     {   
         $statusCounts = [
-            'Pending' => Application::where('status', 'Pending')->count(),
-            'Passed' => Application::where('status', 'Passed')->count(),
-            'Failed' => Application::where('status', 'Failed')->count(),
+            'Not Filtered' => Application::where('status', 'Not Filtered')->count(),
+            'Filtered' => Application::where('status', 'Filtered')->count(),
             'All' => Application::count(),
         ];
 

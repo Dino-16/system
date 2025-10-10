@@ -100,7 +100,7 @@ class Requisitions extends Component
             });
         }
 
-        $requisitions = $query->paginate(6);
+        $requisitions = $query->paginate(5);
 
         return view('livewire.recruitment.requisitions', [
             'statusCounts' => $statusCounts,

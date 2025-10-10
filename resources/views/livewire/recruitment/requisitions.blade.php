@@ -1,5 +1,10 @@
 {{-- job requisition --}}
-<div @class('pt-3')>
+<div @class('pt-2')>
+
+    {{-- Card --}}
+    <div @class('mb-3')>
+        @include('livewire.recruitment.includes.card-requisition')    
+    </div>
 
     <div @class('d-flex justify-content-between align-items-center')>
 
@@ -11,7 +16,7 @@
         {{-- Filter Dropdown --}}
         <div @class('dropdown')>
             <button type="button" id="filterDropdown" data-bs-toggle="dropdown" aria-expanded="false"
-                @class('btn btn-outline-body-tertiary dropdown-toggle d-flex align-items-center border rounded bg-default')>
+                @class('btn btn-outline-body-tertiary dropdown-toggle d-flex align-items-center border rounded bg-white')>
                 <i @class('bi bi-funnel-fill me-2')></i>Filter: {{ ucfirst($statusFilter) }}
             </button>
             <ul @class('dropdown-menu') aria-labelledby="filterDropdown">
@@ -22,7 +27,7 @@
                 </li>
                 <li>
                     <a @class('dropdown-item') wire:click="$set('statusFilter', 'Open')">
-                        <i @class('bi bi-check-circle me-2')></i> Open
+                        <i @class('bi bi-folder2-open me-2')></i> Open
                     </a>
                 </li>
                 <li>
@@ -37,7 +42,7 @@
                 </li>
                 <li>
                     <a @class('dropdown-item') wire:click="$set('statusFilter', 'Closed')">
-                        <i @class('bi bi-x-circle me-2')></i> Closed
+                        <i @class('bi bi-check-circle me-2')></i> Closed
                     </a>
                 </li>
             </ul>
@@ -89,6 +94,7 @@
                             </span>
                         </td>
                         <td @class('text-nowrap')>
+
                             <button 
                                 type="button" 
                                 @class('btn btn-default border btn-sm') 
@@ -97,22 +103,46 @@
                             >
                                 <i @class('bi bi-eye')></i>
                             </button>
-                            <button 
-                                type="button" 
-                                @class('btn btn-default border btn-sm') 
-                                wire:click="draft({{ $requisition->id }})"
-                                title="Draft"
-                            >
-                                <i @class('bi bi-journal-text')></i>
-                            </button>
-                            <button 
-                                type="button" 
-                                @class('btn btn-default border btn-sm') 
-                                wire:click="close({{ $requisition->id }})"
-                                title="Close"
-                            >
-                                <i @class('bi bi-x')></i>
-                            </button>
+                            @if($requisition->status == "Draft" || $requisition->status == "Closed")
+                                <button 
+                                    type="button" 
+                                    @class('btn btn-outline-secondary border btn-sm') 
+                                    wire:click="draft({{ $requisition->id }})"
+                                    title="Draft"
+                                    disabled
+                                >
+                                    <i @class('bi bi-journal-text')></i>
+                                </button>
+                            @else 
+                                <button 
+                                    type="button" 
+                                    @class('btn btn-default border btn-sm') 
+                                    wire:click="draft({{ $requisition->id }})"
+                                    title="Draft"
+                                >
+                                    <i @class('bi bi-journal-text')></i>
+                                </button>
+                            @endif
+                            @if($requisition->status == "Closed")
+                                <button 
+                                    type="button" 
+                                    @class('btn btn-outline-secondary border btn-sm') 
+                                    wire:click="close({{ $requisition->id }})"
+                                    title="Close"
+                                    disabled
+                                >
+                                    <i @class('bi bi-check-circle')></i>
+                                </button>
+                            @else
+                                <button 
+                                    type="button" 
+                                    @class('btn btn-default border btn-sm') 
+                                    wire:click="close({{ $requisition->id }})"
+                                    title="Close"
+                                >
+                                    <i @class('bi bi-check-circle')></i>
+                                </button>
+                            @endif
                         </td>
                     </tr>
                 @empty

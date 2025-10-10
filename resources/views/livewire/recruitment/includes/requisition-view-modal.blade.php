@@ -77,7 +77,8 @@
                                 @class([
                                     'badge rounded-pill px-3 py-2',
                                     'bg-primary' => $selectedRequisition->status === 'Open',
-                                    'bg-warning text-dark' => $selectedRequisition->status === 'Draft',
+                                    'bg-warning text-dark' => $selectedRequisition->status === 'In-Progress',
+                                    'bg-danger' => $selectedRequisition->status === 'Draft',
                                     'bg-secondary' => $selectedRequisition->status === 'Closed',
                                 ])
                             >
