@@ -1,4 +1,4 @@
-<div class="container py-4">
+<div class="py-4">
 
     <div class="row justify-content-center">
         <div class="col-12 col-lg-12 col-xxl-12">
@@ -78,6 +78,11 @@
 
     {{-- === SUBMITTED CHECKLISTS TABLE === --}}
     <div class="pt-3">
+        {{-- Search Bar --}}
+        <div class="mb-3 w-25">
+            <x-text-input type="search" wire:model.live.debounce.300ms="search" placeholder="Search by new hire name..." />
+        </div>
+
         {{-- Table Header --}}
         <div class="p-4 bg-white rounded border border-bottom-0">
             <h4 class="mb-1 d-flex align-items-center gap-2"><i class="bi bi-journal-check text-primary"></i> Submitted Document Checklists</h4>

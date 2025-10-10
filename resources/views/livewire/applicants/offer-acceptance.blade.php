@@ -41,13 +41,13 @@
                             </span>
                         </td>
                         <td>
-                            <button wire:click="hire({{ $offer->id }})" class="btn btn-sm btn-success me-1" title="Accept">
+                            <button wire:click="hire({{ $offer->id }})" class="btn btn-sm btn-default border rounded me-1" title="Accept">
                                 <i class="bi bi-check-circle"></i>
                             </button>
-                            <button wire:click="hold({{ $offer->id }})" class="btn btn-sm btn-warning me-1" title="Hold">
+                            <button wire:click="hold({{ $offer->id }})" class="btn btn-sm btn-default border rounded me-1" title="Hold">
                                 <i class="bi bi-pause-circle"></i>
                             </button>
-                            <button wire:click="reject({{ $offer->id }})" class="btn btn-sm btn-danger" title="Reject">
+                            <button wire:click="reject({{ $offer->id }})" class="btn btn-sm btn-default border rounded" title="Reject">
                                 <i class="bi bi-x-circle"></i>
                             </button>
                         </td>

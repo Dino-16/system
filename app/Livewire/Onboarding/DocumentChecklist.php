@@ -3,6 +3,7 @@
 namespace App\Livewire\Onboarding;
 
 use Livewire\Component;
+use Livewire\Attributes\Url;
 use Illuminate\Support\Facades\Http;
 use App\Models\Onboarding\Document;
 
@@ -11,6 +12,9 @@ class DocumentChecklist extends Component
     public $newHireName = '';
     public $newHireList = [];
     public $existingChecklist;
+    
+    #[Url(keep: true)]
+    public $search = '';
 
     public $resume = false;
     public $signed_application_form = false;
@@ -79,7 +83,15 @@ class DocumentChecklist extends Component
 
     public function render()
     {
-        $checklists = Document::latest()->get();
+        $query = Document::latest();
+        
+        // Apply search filter
+        if (!empty($this->search)) {
+            $searchTerm = trim($this->search);
+            $query->where('new_hire_name', 'like', '%' . $searchTerm . '%');
+        }
+        
+        $checklists = $query->get();
 
         return view('livewire.onboarding.document-checklist', [
             'checklists' => $checklists,

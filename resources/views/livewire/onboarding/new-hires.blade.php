@@ -1,5 +1,10 @@
 <div class="pt-3">
 
+    {{-- Search Bar --}}
+    <div class="mb-3 w-25">
+        <x-text-input type="search" wire:model.live.debounce.3s="search" placeholder="Search by name or position..." />
+    </div>
+
     <div @class('p-5 bg-white rounded border rounded-bottom-0 border-bottom-0')>
         <div>
             <h3>All New Hires</h3>

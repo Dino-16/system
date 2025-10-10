@@ -4,7 +4,8 @@
         <div class="modal-content">
             
             {{-- Header --}}
-            <div class="modal-header bg-secondary text-white">
+            <div class="modal-header bg-primary text-white">
+                <i @class('bi bi-briefcase-fill me-2')></i>
                 <h5 class="modal-title">Posting Details</h5>
                 <button type="button" class="btn-close btn-close-white" wire:click="closeUpdateModal"></button>
             </div>
