@@ -3,55 +3,18 @@
   <div class="modal-dialog modal-xl modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="requestRoomModalLabel">New Document Upload</h5>
+        <h5 class="modal-title" id="requestRoomModalLabel">Request Room</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
-        <div class="row g-4">
-          <div class="col-lg-12">
-            <div class="card shadow-sm border-0">
-              <div class="card-body">
-                <form id="document-upload-form" class="row g-3" method="POST" action="{{ route('facilities-requests.store') }}" enctype="multipart/form-data">
-                  @csrf
-                  <div class="col-md-6">
-                    <label class="form-label">Title<span class="text-danger"></span></label>
-                    <input type="text" name="title" class="form-control" required>
-                  </div>
-                  <div class="col-md-6">
-                    <label class="form-label">File<span class="text-danger"></span></label>
-                    <input type="file" name="file" class="form-control">
-                  </div>
-                  <div class="col-md-6">
-                    <label class="form-label">Category</label>
-                    <select name="category_id" class="form-select" id="category_id">
-                      <option value="">-- Select Category --</option>
-                      <option value="Contracts">Contracts</option>
-                      <option value="Correspondence">Correspondence</option>
-                      <option value="Invoices">Invoices</option>
-                      <option value="Legal Documents">Legal Documents</option>
-                      <option value="Policies">Policies</option>
-                      <option value="Procedures">Procedures</option>
-                      <option value="Reports">Reports</option>
-                      <option value="Travel Documents">Travel Documents</option>
-                    </select>
-                  </div>
-                  <div class="col-md-6">
-                    <label class="form-label">Or New Category</label>
-                    <input type="text" name="new_category" class="form-control" placeholder="e.g., Invoices">
-                  </div>
-                  <div class="col-12">
-                    <label class="form-label">Description</label>
-                    <textarea name="description" rows="3" class="form-control" placeholder="Optional description..."></textarea>
-                  </div>
-                  <div class="col-12 d-flex gap-2">
-                    <button type="submit" class="btn btn-primary"><i class="bi bi-upload me-2"></i>Upload Document</button>
-                    <button type="reset" class="btn btn-outline-secondary">Reset Form</button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
+
+      <div class="modal-body text-center py-5">
+        <i class="bi bi-exclamation-circle text-warning" style="font-size: 3rem;"></i>
+        <h4 class="mt-3">Not Integrated Yet</h4>
+        <p class="text-muted">This feature is currently under development. Please check back later.</p>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
