@@ -1,6 +1,5 @@
 <div class="container py-4">
 
-    {{-- === NEW HIRE CHECKLIST FORM === --}}
     <div class="row justify-content-center">
         <div class="col-12 col-lg-10 col-xxl-8">
             <div class="card border-0 shadow-sm mb-4">

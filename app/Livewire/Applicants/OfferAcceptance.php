@@ -11,7 +11,7 @@ class OfferAcceptance extends Component
 {
     public $search = '';
 
-    public function accept($id)
+    public function hire($id)
     {
         $offer = Offer::findOrFail($id);
         $offer->offer_status = 'Hired';
