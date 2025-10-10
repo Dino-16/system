@@ -72,9 +72,11 @@
                                         Personal Information
                                     </button>
                                 </h2>
+                                <!-- Example for Personal Info -->
                                 <div id="personal-collapse-{{ $applicant->id }}"
                                     class="accordion-collapse collapse"
-                                    aria-labelledby="personal-heading-{{ $applicant->id }}">
+                                    aria-labelledby="personal-heading-{{ $applicant->id }}"
+                                    data-bs-parent="#accordion-{{ $applicant->id }}">
                                     <div class="accordion-body">
                                         <p><i class="bi bi-envelope me-2"></i>{{ $applicant->applicant_email }}</p>
                                         <p><i class="bi bi-telephone me-2"></i>{{ $applicant->applicant_phone }}</p>
@@ -102,7 +104,8 @@
                                 </h2>
                                 <div id="details-collapse-{{ $applicant->id }}"
                                     class="accordion-collapse collapse"
-                                    aria-labelledby="details-heading-{{ $applicant->id }}">
+                                    aria-labelledby="details-heading-{{ $applicant->id }}"
+                                    data-bs-parent="#accordion-{{ $applicant->id }}">
                                     <div class="accordion-body">
                                         <p><i class="bi bi-tools me-2"></i>Skills:</p>
                                         <div class="mb-2">

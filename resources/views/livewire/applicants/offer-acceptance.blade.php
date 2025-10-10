@@ -51,8 +51,6 @@
                                 <button wire:click="reject({{ $offer->id }})" class="btn btn-sm btn-danger" title="Reject">
                                     <i class="bi bi-x-circle"></i>
                                 </button>
-                            @else
-                                <span class="text-muted">No actions</span>
                             @endif
                         </td>
                     </tr>

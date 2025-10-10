@@ -51,6 +51,9 @@ class FilteredResumes extends Component
             'status'                 => 'Scheduled',
         ]);
 
+        $this->selectedCandidate->delete();
+
+
         session()->flash('success', 'Interview schedule posted successfully.');
 
         $this->closeSetCandidate();
