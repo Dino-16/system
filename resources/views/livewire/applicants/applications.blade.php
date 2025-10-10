@@ -92,7 +92,7 @@
                                                 @class('modal-title') 
                                                 id="resumeModalLabel{{ $applicant->id }}"
                                             >
-                                                Resume - {{ ucwords($applicant->applicant_first_name . ' ' .  $applicant->applicant_last_name) }}
+                                                Resume – {{ ucwords($applicant->applicant_first_name . ' ' .  $applicant->applicant_last_name) }}
                                             </h5>
                                             <button 
                                                 type="button" 
