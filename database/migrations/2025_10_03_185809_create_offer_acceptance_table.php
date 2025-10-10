@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('candidate_id')->constrained('candidates')->onDelete('cascade');
             $table->date('offer_date')->nullable();
-            $table->enum('offer_status', ['On Hold', 'Hired', 'Rejected'])->default('On Hold');
+            $table->enum('offer_status', ['Pending','On Hold', 'Hired', 'Rejected'])->default('Pending');
             $table->timestamps();
         });
     }

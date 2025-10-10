@@ -14,7 +14,7 @@ class OfferAcceptance extends Component
     public function accept($id)
     {
         $offer = Offer::findOrFail($id);
-        $offer->offer_status = 'Accepted';
+        $offer->offer_status = 'Hired';
         $offer->save();
 
         $candidate = $offer->candidate;
@@ -61,10 +61,17 @@ class OfferAcceptance extends Component
         }
     }
 
+    public function hold($id)
+    {
+        $offer = Offer::findOrFail($id);
+        $offer->offer_status = 'On Hold';
+        $offer->save();
+    }
+
     public function reject($id)
     {
         $offer = Offer::findOrFail($id);
-        $offer->offer_status = 'Declined';
+        $offer->offer_status = 'Rejected';
         $offer->save();
     }
 
