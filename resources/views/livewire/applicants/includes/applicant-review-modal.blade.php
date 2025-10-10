@@ -1,24 +1,45 @@
 @if($showFilteringModal && $filterApplicant)
-<div @class('modal fade show d-block') tabindex="-1" style="background: rgba(0,0,0,0.5);">
+<div 
+    @class('modal fade show d-block') 
+    tabindex="-1" 
+    role="dialog" 
+    aria-modal="true" 
+    aria-labelledby="applicantReviewLabel" 
+    style="background: rgba(0,0,0,0.5);"
+>
     <div @class('modal-dialog modal-xl modal-dialog-centered')>
         <div @class('modal-content')>
             <div @class('modal-header bg-primary text-white')>
-                <h5 @class('modal-title')>Applicant Review</h5>
-                <button type="button" @class('btn-close btn-close-white') wire:click="closeModal"></button>
+                <h5 @class('modal-title') id="applicantReviewLabel">Applicant Review</h5>
+                <button type="button" @class('btn-close btn-close-white') wire:click="closeModal" aria-label="Close"></button>
             </div>
 
             <div @class('modal-body')>
                 <div @class('row')>
-                    <div @class('col-md-6')>
-                        <img src="https://placehold.co/500x700" alt="">
+
+                    {{-- Resume Preview --}}
+                    <div @class('col-md-6 position-relative')>
+                        @if($filterApplicant->applicant_resume_file)
+                            <iframe 
+                                src="{{ route('resume.view', ['id' => $filterApplicant->id]) }}" 
+                                style="width:100%;height:80vh;" 
+                                frameborder="0" 
+                                loading="lazy"
+                                onerror="this.outerHTML='<div class=\'text-muted text-center mt-5\'><i class=\'bi bi-file-earmark-x\' style=\'font-size: 2rem;\'></i><p>Resume not available.</p></div>';"
+                            ></iframe>
+                        @else
+                            <div class="text-center text-muted mt-5">
+                                <i class="bi bi-file-earmark-x" style="font-size: 2rem;"></i>
+                                <p>No resume uploaded.</p>
+                            </div>
+                        @endif
                     </div>
+
+                    {{-- Applicant Form --}}
                     <div @class('col-md-6')>
                         <form wire:submit.prevent="saveReview">
-
-                            {{-- Section Title --}}
-                            <div @class('mb-3')>
-                                <p>Fill up applicants information</p>
-                            </div>
+                            <hr class="my-3">
+                            <h6 class="text-muted">Fill up applicant information</h6>
 
                             <x-alert-success />
 
@@ -119,7 +140,6 @@
                                     />
                                     <x-input-error field="status" />
                                 </div>
-
                             </div>
 
                             <div @class('modal-footer')>
@@ -128,6 +148,7 @@
                             </div>
                         </form>
                     </div>
+
                 </div>
             </div>
         </div>
