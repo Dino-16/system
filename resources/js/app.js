@@ -10,14 +10,34 @@ document.addEventListener('DOMContentLoaded', function() {
     const overlay = document.getElementById('overlay');
     const mainContent = document.getElementById('main-content');
 
-    // Mobile sidebar toggle
+    // Accessibility helpers + unified mobile toggle
+    const toggleMobileSidebar = (e) => {
+        if (e) e.preventDefault();
+        if (!sidebar || !overlay) return;
+        const isActive = !sidebar.classList.contains('active');
+        sidebar.classList.toggle('active', isActive);
+        overlay.classList.toggle('show', isActive);
+        document.body.style.overflow = isActive ? 'hidden' : '';
+        if (menuBtn) menuBtn.setAttribute('aria-expanded', String(isActive));
+    };
+
+    // Mobile/tablet hamburger toggle (click, touch, pointer, keyboard)
     if (menuBtn && sidebar && overlay) {
-    menuBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        sidebar.classList.toggle('active');
-        overlay.classList.toggle('show');
-        document.body.style.overflow = sidebar.classList.contains('active') ? 'hidden' : '';
-    });
+        // ARIA for better a11y
+        menuBtn.setAttribute('aria-controls', 'sidebar');
+        menuBtn.setAttribute('aria-expanded', 'false');
+        menuBtn.setAttribute('aria-label', 'Toggle navigation');
+
+        ['click', 'touchstart', 'pointerdown'].forEach(evt => {
+            menuBtn.addEventListener(evt, toggleMobileSidebar, { passive: false });
+        });
+        // Keyboard support
+        menuBtn.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                toggleMobileSidebar(e);
+            }
+        });
     }
 
     // Desktop sidebar toggle
@@ -42,20 +62,21 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     }
 
-    // Restore sidebar state from localStorage
+    // Restore sidebar state from localStorage (desktop collapse state)
     const savedState = localStorage.getItem('sidebarCollapsed');
     if (savedState === 'true' && sidebar && mainContent) {
-    sidebar.classList.add('collapsed');
-    mainContent.classList.add('expanded');
+        sidebar.classList.add('collapsed');
+        mainContent.classList.add('expanded');
     }
 
     // Close mobile sidebar when clicking overlay
-    if (overlay) {
-    overlay.addEventListener('click', () => {
-        sidebar.classList.remove('active');
-        overlay.classList.remove('show');
-        document.body.style.overflow = '';
-    });
+    if (overlay && sidebar) {
+        overlay.addEventListener('click', () => {
+            sidebar.classList.remove('active');
+            overlay.classList.remove('show');
+            document.body.style.overflow = '';
+            if (menuBtn) menuBtn.setAttribute('aria-expanded', 'false');
+        });
     }
 
     // Add smooth hover effects to nav links
@@ -86,13 +107,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Handle window resize for responsive behavior
     window.addEventListener('resize', () => {
-    // Reset mobile sidebar state on desktop
-    if (window.innerWidth >= 768) {
-        sidebar.classList.remove('active');
-        overlay.classList.remove('show');
-        document.body.style.overflow = '';
-    }
+        // Reset mobile sidebar state on desktop
+        if (window.innerWidth >= 768 && sidebar && overlay) {
+            sidebar.classList.remove('active');
+            overlay.classList.remove('show');
+            document.body.style.overflow = '';
+            if (menuBtn) menuBtn.setAttribute('aria-expanded', 'false');
+        }
     });
-}); // Close DOMContentLoadeds
+}); // Close DOMContentLoaded
 
 

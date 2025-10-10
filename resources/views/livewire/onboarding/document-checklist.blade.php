@@ -2,14 +2,14 @@
 
     {{-- === NEW HIRE CHECKLIST FORM === --}}
     <div class="row justify-content-center">
-        <div class="col-lg-8 col-md-10">
-            <div class="card border rounded shadow-sm mb-4">
-                <div class="card-header bg-white border-bottom">
-                    <h5 class="mb-0">📁 New Hire Document Checklist</h5>
-                    <p class="text-muted mb-0">Use this checklist to track required submissions for onboarding</p>
+        <div class="col-12 col-lg-10 col-xxl-8">
+            <div class="card border-0 shadow-sm mb-4">
+                <div class="card-header bg-white border-0 pt-4 pb-3">
+                    <h5 class="mb-1 fw-bold">📁 New Hire Document Checklist</h5>
+                    <p class="text-muted mb-0">Use this checklist to track required submissions for onboarding.</p>
                 </div>
 
-                <div class="card-body">
+                <div class="card-body pt-0">
                     {{-- Success Alert --}}
                     @if (session()->has('success'))
                         <div class="alert alert-success">{{ session('success') }}</div>
@@ -29,14 +29,14 @@
                         @enderror
                     </div>
 
-                    {{-- Document Checklist --}}
-                    <div class="table-responsive">
-                        <table class="table table-bordered align-middle">
+                    {{-- Document Checklist (responsive table) --}}
+                    <div class="table-responsive mb-3">
+                        <table class="table table-bordered align-middle mb-0">
                             <thead class="table-light">
                                 <tr>
-                                    <th style="width: 5%">#</th>
+                                    <th style="width:6rem" class="text-center">#</th>
                                     <th>Document</th>
-                                    <th class="text-center" style="width: 10%">Submitted</th>
+                                    <th style="width:10rem" class="text-center">Submitted</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -48,15 +48,16 @@
                                     ['label' => 'Medical Certificate', 'field' => 'medical_certificate'],
                                     ['label' => 'NBI Clearance', 'field' => 'nbi_clearance'],
                                     ['label' => 'Barangay Clearance', 'field' => 'barangay_clearance'],
-                                    ['label' => 'Signed Job Offer / Contract', 'field' => 'signed_job_offer_contract'],
                                 ] as $index => $doc)
                                     <tr>
-                                        <td>{{ $index + 1 }}</td>
-                                        <td>{{ $doc['label'] }}</td>
+                                        <td class="text-center">
+                                            <span class="badge bg-light text-dark border">{{ $index + 1 }}</span>
+                                        </td>
+                                        <td class="fw-medium">{{ $doc['label'] }}</td>
                                         <td class="text-center">
                                             <input type="checkbox" class="form-check-input"
-                                                wire:model.defer="{{ $doc['field'] }}"
-                                                id="{{ $doc['field'] }}">
+                                                   wire:model.defer="{{ $doc['field'] }}"
+                                                   id="{{ $doc['field'] }}">
                                         </td>
                                     </tr>
                                 @endforeach
@@ -65,7 +66,7 @@
                     </div>
 
                     {{-- Save Button --}}
-                    <div class="mt-4">
+                    <div class="mt-3">
                         <button wire:click="saveChecklist" class="btn btn-primary w-100">
                             💾 Save Checklist
                         </button>
@@ -79,13 +80,13 @@
     <div class="pt-3">
         {{-- Table Header --}}
         <div class="p-4 bg-white rounded border border-bottom-0">
-            <h4>📄 Submitted Document Checklists</h4>
+            <h4 class="mb-1">📄 Submitted Document Checklists</h4>
             <p class="text-secondary mb-0">Overview of onboarding document submissions</p>
         </div>
 
         {{-- Table Content --}}
-        <div class="table-responsive border rounded bg-white px-5 rounded-top-0 border-top-0">
-            <table class="table align-middle">
+        <div class="table-responsive border rounded bg-white px-3 px-md-4 px-lg-5 rounded-top-0 border-top-0">
+            <table class="table align-middle mb-0">
                 <thead class="bg-dark">
                     <tr>
                         <th class="text-secondary fw-normal">#</th>
@@ -109,7 +110,6 @@
                                         'medical_certificate' => 'Medical Certificate',
                                         'nbi_clearance' => 'NBI Clearance',
                                         'barangay_clearance' => 'Barangay Clearance',
-                                        'signed_job_offer_contract' => 'Signed Job Offer / Contract',
                                     ] as $field => $label)
                                         @if ($item->$field)
                                             <li>
@@ -122,7 +122,7 @@
                             </td>
                             <td class="text-center">
                                 @php
-                                    $total = 8;
+                                    $total = 7;
                                     $submitted = collect([
                                         $item->resume,
                                         $item->signed_application_form,
@@ -131,7 +131,6 @@
                                         $item->medical_certificate,
                                         $item->nbi_clearance,
                                         $item->barangay_clearance,
-                                        $item->signed_job_offer_contract,
                                     ])->filter()->count();
                                 @endphp
 
