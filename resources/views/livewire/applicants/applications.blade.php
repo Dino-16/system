@@ -92,7 +92,7 @@
                                                 @class('modal-title') 
                                                 id="resumeModalLabel{{ $applicant->id }}"
                                             >
-                                                Resume - {{ ucwords($applicant->applicant_first_name . ' ' .  $applicant->applicant_last_name) }}
+                                                Resume – {{ ucwords($applicant->applicant_first_name . ' ' .  $applicant->applicant_last_name) }}
                                             </h5>
                                             <button 
                                                 type="button" 
@@ -102,14 +102,36 @@
                                             ></button>
                                         </div>
                                         <div 
-                                            @class('modal-body') 
+                                            @class('modal-body position-relative') 
                                             style="height: 80vh;"
                                         >
                                             <iframe 
-                                                data-src="https://careers-hr1.jetlougetravels-ph.com/api/resume/{{ $applicant->id }}" 
+                                                id="resumeFrame{{ $applicant->id }}"
+                                                src="https://careers-hr1.jetlougetravels-ph.com/api/resume/{{ $applicant->id }}" 
                                                 style="width:100%;height:100%;" 
                                                 frameborder="0"
+                                                loading="lazy"
+                                                onerror="document.getElementById('resumeFallback{{ $applicant->id }}').classList.remove('d-none');"
                                             ></iframe>
+
+                                            <!-- Fallback message -->
+                                            <div 
+                                                id="resumeFallback{{ $applicant->id }}" 
+                                                class="d-none position-absolute top-50 start-50 translate-middle text-center text-muted"
+                                            >
+                                                <i class="bi bi-file-earmark-excel" style="font-size: 2rem;"></i>
+                                                <p class="mt-2">Resume not available or failed to load.</p>
+                                            </div>
+                                        </div>
+                                        <div @class('modal-footer justify-content-between')>
+                                            <small class="text-muted">Resume preview may take a few seconds to load.</small>
+                                            <a 
+                                                href="https://careers-hr1.jetlougetravels-ph.com/api/resume/{{ $applicant->id }}" 
+                                                target="_blank" 
+                                                @class('btn btn-outline-primary btn-sm')
+                                            >
+                                                <i class="bi bi-box-arrow-up-right"></i> Open in New Tab
+                                            </a>
                                         </div>
                                     </div>
                                 </div>

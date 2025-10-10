@@ -1,42 +1,35 @@
 <div>
 
-    <div class="d-flex justify-content-end mb-3">
-        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#requestRoomModal">
-            <i class="bi bi-plus-circle me-2"></i>Request Room
-        </button>
-    </div>
-
     {{-- Interview Stage Filter Row --}}
-{{-- Interview Stage Filter Row --}}
-<div class="row mb-3">
-    <div class="col-md-4">
-        <button type="button"
-            wire:click="$set('interviewStage', 'Scheduled')"
-            class="btn w-100 d-flex align-items-center justify-content-center
-                @if($interviewStage === 'Scheduled') btn-primary
-                @else btn-outline-secondary @endif">
-            <i class="bi bi-calendar-check-fill me-2"></i> Initial
-        </button>
+    <div class="row mb-3">
+        <div class="col-md-4">
+            <button type="button"
+                wire:click="$set('interviewStage', 'Scheduled')"
+                class="btn w-100 d-flex align-items-center justify-content-center
+                    @if($interviewStage === 'Scheduled') btn-primary
+                    @else btn-outline-secondary @endif">
+                <i class="bi bi-calendar-check-fill me-2"></i> Initial
+            </button>
+        </div>
+        <div class="col-md-4">
+            <button type="button"
+                wire:click="$set('interviewStage', 'Final')"
+                class="btn w-100 d-flex align-items-center justify-content-center
+                    @if($interviewStage === 'Final') btn-primary
+                    @else btn-outline-secondary @endif">
+                <i class="bi bi-person-check-fill me-2"></i> Final
+            </button>
+        </div>
+        <div class="col-md-4">
+            <button type="button"
+                wire:click="$set('interviewStage', 'All')"
+                class="btn w-100 d-flex align-items-center justify-content-center
+                    @if($interviewStage === 'All') btn-primary
+                    @else btn-outline-secondary @endif">
+                <i class="bi bi-list-ul me-2"></i> Show All
+            </button>
+        </div>
     </div>
-    <div class="col-md-4">
-        <button type="button"
-            wire:click="$set('interviewStage', 'Final')"
-            class="btn w-100 d-flex align-items-center justify-content-center
-                @if($interviewStage === 'Final') btn-primary
-                @else btn-outline-secondary @endif">
-            <i class="bi bi-person-check-fill me-2"></i> Final
-        </button>
-    </div>
-    <div class="col-md-4">
-        <button type="button"
-            wire:click="$set('interviewStage', 'All')"
-            class="btn w-100 d-flex align-items-center justify-content-center
-                @if($interviewStage === 'All') btn-primary
-                @else btn-outline-secondary @endif">
-            <i class="bi bi-list-ul me-2"></i> Show All
-        </button>
-    </div>
-</div>
 
     <div @class(['row'])>
         @forelse($candidates as $candidate)
