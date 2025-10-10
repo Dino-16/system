@@ -1,4 +1,6 @@
-<div class="container">
+<div class="container py-4">
+
+    {{-- === NEW HIRE CHECKLIST FORM === --}}
     <div class="row justify-content-center">
         <div class="col-lg-8 col-md-10">
             <div class="card border rounded shadow-sm mb-4">
@@ -8,6 +10,7 @@
                 </div>
 
                 <div class="card-body">
+                    {{-- Success Alert --}}
                     @if (session()->has('success'))
                         <div class="alert alert-success">{{ session('success') }}</div>
                     @endif
@@ -15,18 +18,25 @@
                     {{-- New Hire Name --}}
                     <div class="mb-4">
                         <label for="new_hire_name" class="form-label fw-bold">New Hire Name</label>
-                        <input type="text" class="form-control" id="new_hire_name" wire:model.defer="newHireName" placeholder="e.g. Juan Dela Cruz">
-                        @error('newHireName') <span class="text-danger">{{ $message }}</span> @enderror
+                        <select class="form-select" id="new_hire_name" wire:model="newHireName">
+                            <option value="">Select a new hire</option>
+                            @foreach ($newHireList as $hire)
+                                <option value="{{ $hire['name'] }}">{{ $hire['name'] }}</option>
+                            @endforeach
+                        </select>
+                        @error('newHireName') 
+                            <span class="text-danger">{{ $message }}</span> 
+                        @enderror
                     </div>
 
-                    {{-- Table Checklist --}}
+                    {{-- Document Checklist --}}
                     <div class="table-responsive">
                         <table class="table table-bordered align-middle">
                             <thead class="table-light">
                                 <tr>
-                                    <th>#</th>
+                                    <th style="width: 5%">#</th>
                                     <th>Document</th>
-                                    <th class="text-center">Submitted</th>
+                                    <th class="text-center" style="width: 10%">Submitted</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -57,7 +67,7 @@
                     {{-- Save Button --}}
                     <div class="mt-4">
                         <button wire:click="saveChecklist" class="btn btn-primary w-100">
-                            Save Checklist
+                            💾 Save Checklist
                         </button>
                     </div>
                 </div>
@@ -65,22 +75,23 @@
         </div>
     </div>
 
+    {{-- === SUBMITTED CHECKLISTS TABLE === --}}
     <div class="pt-3">
-        <div class="p-5 bg-white rounded border rounded-bottom-0 border-bottom-0">
-            <div>
-                <h3>📄 Submitted Document Checklists</h3>
-                <p class="text-secondary mb-0">Overview of onboarding document submissions</p>
-            </div>
+        {{-- Table Header --}}
+        <div class="p-4 bg-white rounded border border-bottom-0">
+            <h4>📄 Submitted Document Checklists</h4>
+            <p class="text-secondary mb-0">Overview of onboarding document submissions</p>
         </div>
 
+        {{-- Table Content --}}
         <div class="table-responsive border rounded bg-white px-5 rounded-top-0 border-top-0">
-            <table class="table">
+            <table class="table align-middle">
                 <thead class="bg-dark">
                     <tr>
                         <th class="text-secondary fw-normal">#</th>
                         <th class="text-secondary fw-normal">New Hire</th>
                         <th class="text-secondary fw-normal">Submitted Documents</th>
-                        <th class="text-secondary fw-normal">Status</th>
+                        <th class="text-secondary fw-normal text-center">Status</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -101,12 +112,15 @@
                                         'signed_job_offer_contract' => 'Signed Job Offer / Contract',
                                     ] as $field => $label)
                                         @if ($item->$field)
-                                            <li><i class="bi bi-check-circle-fill text-success me-1"></i>{{ $label }}</li>
+                                            <li>
+                                                <i class="bi bi-check-circle-fill text-success me-1"></i>
+                                                {{ $label }}
+                                            </li>
                                         @endif
                                     @endforeach
                                 </ul>
                             </td>
-                            <td>
+                            <td class="text-center">
                                 @php
                                     $total = 8;
                                     $submitted = collect([
@@ -120,7 +134,10 @@
                                         $item->signed_job_offer_contract,
                                     ])->filter()->count();
                                 @endphp
-                                <span class="badge {{ $submitted === $total ? 'bg-success' : 'bg-warning text-dark' }}">
+
+                                <span 
+                                    class="badge rounded-pill px-3 py-2 
+                                        {{ $submitted === $total ? 'bg-success' : 'bg-warning text-dark' }}">
                                     {{ $submitted === $total ? 'Complete' : 'Incomplete' }}
                                 </span>
                             </td>
